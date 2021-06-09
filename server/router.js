@@ -10,7 +10,7 @@ const {
   getTasksByMonth
 } = require('./controllers/taskController')
 
-router.get('/myPlants', getMyPlants);
+router.get('/myPlants', getMyPlants)
 router.post('/myPlants', savePlant);
 router.delete('/myPlants', deletePlant);
 
