@@ -19,10 +19,10 @@ function PlantItem({plant}){
 
   return (
   <div>
-    <button onClick={savePlant}>save {plant.name} to myPlants</button>
-    <button onClick={removePlant}>remove {plant.name} from myPlants</button>
     <h2>{plant.name}</h2>
     <h4>{plant.scientific_name}</h4>
+    <button onClick={savePlant}>save {plant.name} to myPlants</button>
+    <button onClick={removePlant}>remove {plant.name} from myPlants</button>
     <img className="plantImage" src={plant.thumbnail_url}/>
   </div>
   )

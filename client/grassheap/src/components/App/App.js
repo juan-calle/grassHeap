@@ -8,8 +8,8 @@ function App() {
     <div className="App">
       {/* TODO add navbar here */}
       <h1>HELLO PLANTS🌳🌼</h1>
-      <PlantList/>
       <Dashboard/>
+      <PlantList/>
     </div>
   );
 }

@@ -1,14 +1,19 @@
 import React, {useState, useEffect } from 'react';
 import TaskList from '../TaskList/TaskList'
-import { getTasksByMonth } from '../../../services/ServerApiServices';
+import { getMyPlants, getTasksByMonth } from '../../../services/ServerApiServices';
 
 function MonthsTasksBox({monthNumber, monthName}) {
 
   const [ tasks, setTasks ] = useState([]);
 
   useEffect(()=>{
-    getTasksByMonth(monthName).then(tasks => setTasks(tasks));
-  }, [])
+    getMyPlants().then(myPlants => {
+      getTasksByMonth(monthName).then(tasks => {
+        const myTasks = tasks.filter(task => myPlants.some(plant => plant.name === task.crop))
+        setTasks(myTasks)
+      });
+    })
+  }, []);
 
   return (
     <div>
