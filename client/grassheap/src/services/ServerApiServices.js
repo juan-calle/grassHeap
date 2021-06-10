@@ -12,6 +12,14 @@ exports.getMyPlants = async () => {
   return myPlants;
 }
 
-exports.saveToMyPlants = async () => {
-  // const response =
+exports.saveToMyPlants = async (plant) => {
+  const JSONPlant = JSON.stringify(plant);
+  const response = await fetch(`${base_url}/myplants`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSONPlant
+  });
+  return response.json();
 }
