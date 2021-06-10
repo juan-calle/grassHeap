@@ -5,3 +5,13 @@ exports.getTasksByMonth = async (month) => {
   const tasks = await JSONtasks.json();
   return tasks;
 }
+
+exports.getMyPlants = async () => {
+  const JSONPlants = await fetch(`${base_url}/myplants`);
+  const myPlants = await JSONPlants.json();
+  return myPlants;
+}
+
+exports.saveToMyPlants = async () => {
+  // const response =
+}

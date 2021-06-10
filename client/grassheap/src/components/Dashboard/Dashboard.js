@@ -1,7 +1,7 @@
 import Tasks from "../Tasks/Tasks";
+import React from 'react';
 
-
-function Dashboard(props){
+function Dashboard(){
   return <Tasks/>
 }
 
