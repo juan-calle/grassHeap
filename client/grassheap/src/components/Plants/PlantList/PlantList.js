@@ -7,19 +7,18 @@ import './PlantList.css'
 
 function PlantList () {
   const [ plants, setPlants ] = useState([]);
-
-  function savePlant(plant={}) {
-    return saveToMyPlants(plant);
-  }
+  const [ myPlants, setMyPlants ] = useState([]);
 
   useEffect(()=>{
     getAllPlants().then(plants=>setPlants(plants));
-    getMyPlants().then(myplants => console.log(myplants))
+    getMyPlants().then(myplants => setMyPlants(myplants))
   },[])
+
+  // TODO pass down boolean flag of myPlant from here
 
   const plantsDisplay = plants.map((plant, i) => {
     return (
-      <PlantItem className="plantItem" key={i} savePlant={savePlant} plant={plant}></PlantItem>
+      <PlantItem className="plantItem" key={i} plant={plant}></PlantItem>
     )
   })
 

@@ -23,3 +23,15 @@ exports.saveToMyPlants = async (plant) => {
   });
   return response.json();
 }
+
+exports.removeFromMyPlants = async (plantID) => {
+  const JSONPlant = JSON.stringify({plantID});
+  const response = await fetch(`${base_url}/myplants`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSONPlant
+  });
+  return response.json();
+}
