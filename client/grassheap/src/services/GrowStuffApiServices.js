@@ -9,3 +9,13 @@ exports.getAllPlants = async () => {
     return err;
   }
 }
+
+exports.getPlantByName = async (name) => {
+  try {
+    const JSONPlant = await fetch(`${base_url}/plant/${name}`);
+    const plant = await JSONPlant.json();
+    return plant
+  } catch (err) {
+      return err
+  }
+}

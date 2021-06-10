@@ -1,6 +1,6 @@
 import React from 'react';
 // import Spinner from '../Spinner/spinner';
-import MonthTaskBox from './MonthTasksBox/MonthTasksBox'
+import MonthTaskBox from '../MonthTasksBox/MonthTasksBox'
 
 
 function Tasks () {

@@ -14,7 +14,6 @@ function PlantList () {
     getMyPlants().then(myplants => setMyPlants(myplants))
   },[])
 
-  // TODO pass down boolean flag of myPlant from here
 
   const plantsDisplay = plants.map((plant, i) => {
     return (
