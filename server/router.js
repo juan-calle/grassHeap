@@ -8,7 +8,8 @@ const {
 const {
   getTasks,
   saveTask,
-  getTasksByMonth
+  getTasksByMonth,
+  getTasksByCrop
 } = require('./controllers/taskController');
 
 const {
@@ -30,6 +31,7 @@ router.delete('/myPlants', deletePlant);
 // interact with tasks database
 router.get('/tasks', getTasks);
 router.get('/tasks/month/:month', getTasksByMonth);
+router.get('/tasks/crop/:crop', getTasksByCrop);
 router.post('/tasks', saveTask);
 
 // getWeather

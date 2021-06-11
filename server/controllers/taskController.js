@@ -31,7 +31,20 @@ async function getTasksByMonth(req, res) {
   }
 }
 
+async function getTasksByCrop(req, res) {
+  const crop = req.params.crop;
+  try {
+    const tasks = await Task.find({
+      crop
+    });
+    res.status(200).send(tasks);
+  } catch (err) {
+    res.status(400).send('failed to get')
+  }
+}
+
 module.exports = {
+  getTasksByCrop,
   getTasks,
   saveTask,
   getTasksByMonth

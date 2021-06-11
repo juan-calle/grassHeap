@@ -3,11 +3,27 @@ import TaskItem from '../TaskItem/TaskItem';
 
 function TaskList({tasks}){
 
-  const tasksDisplay = tasks.map((task,i) => <TaskItem key={i} task={task}/>)
+  const noTasks = (
+    <div className="TaskList_empty">
+      <p>no tasks for your plants this month</p>
+    </div>
+  )
+  const showTasks = tasks.map((task,i) =>
+    (
+      <ul key={i}>
+        <li>
+          <TaskItem task={task}/>
+        </li>
+      </ul>
+    ))
 
   return (
-    <div>
-    {tasksDisplay}
+    <div className="TaskList">
+      {
+        tasks.length === 0 ?
+        noTasks :
+        showTasks
+      }
     </div>
     )
 }

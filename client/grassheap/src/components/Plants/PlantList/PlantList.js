@@ -10,19 +10,22 @@ function PlantList () {
   const [ myPlants, setMyPlants ] = useState([]);
 
   useEffect(()=>{
-    getAllPlants().then(plants=>setPlants(plants));
+    // make request to GrowStuff API for all crops
+    getAllPlants().then(plants=>setPlants(plants)
+    );
     getMyPlants().then(myplants => setMyPlants(myplants))
   },[])
 
 
   const plantsDisplay = plants.map((plant, i) => {
+    const inMyPlants = myPlants.some(myPlant => myPlant.name === plant.slug);
     return (
-      <PlantItem className="plantItem" key={i} plant={plant}></PlantItem>
+      <PlantItem key={i} inMyPlants={inMyPlants} plant={plant}></PlantItem>
     )
   })
 
   return (
-    <div>
+    <div className="PlantList">
       {plantsDisplay}
     </div>
   )

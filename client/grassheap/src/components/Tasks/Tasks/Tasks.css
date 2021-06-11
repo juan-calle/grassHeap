@@ -1,0 +1,25 @@
+.tasks__allmonths {
+  display: flex;
+  justify-content: space-evenly;
+  border: 2px solid rgb(15, 19, 207);
+}
+
+.tasks__month {
+  width: 30%;
+  margin: 0.2rem;
+  padding: 0.1rem;
+  border: 2px solid rgb(71, 17, 17);
+  background-color: rgb(190, 190, 190);
+  border-radius: 15px;
+}
+
+.tasks__prev {
+  float: left;
+}
+.tasks__next {
+  float: right;
+}
+
+.tasks__scroller-btn {
+  height: 20%;
+}

@@ -10,8 +10,6 @@ function App() {
     <div className="App">
       <Navbar/>
       <Switch>
-        {/* TODO add navbar here */}
-        {/* <h1>HELLO PLANTS🌳🌼</h1> */}
           <Route path='/' component={Dashboard} exact/>
           <Route path='/plants' component={PlantList}/>
       </Switch>

@@ -1,1 +1,24 @@
+.plantItem {
+  border: 2px solid grey;
+  background-size: cover;
+  border-radius: 5px;
+}
 
+.plantItem__plantImage {
+  /* float: left; */
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+PlantItem__btn {
+  margin: 10% 2%;
+}
+
+.PlantItem__save {
+  background-color: rgb(225, 255, 181);
+}
+
+.PlantItem__remove {
+  background-color: rgb(245, 159, 159);
+}
