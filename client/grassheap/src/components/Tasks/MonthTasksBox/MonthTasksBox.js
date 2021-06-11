@@ -2,6 +2,7 @@ import React, {useState, useEffect } from 'react';
 import TaskList from '../TaskList/TaskList'
 import { getMyPlants, getTasksByMonth } from '../../../services/ServerApiServices';
 import './MonthTasksBox.css'
+import AddTaskForm from '../AddTaskForm/AddTaskForm';
 
 function getSeason(monthNumber) {
   switch(monthNumber+1) {
@@ -25,7 +26,6 @@ function getSeason(monthNumber) {
 }
 
 function MonthsTasksBox({monthNumber, monthName}) {
-
   const [ tasks, setTasks ] = useState([]);
   const [ seasonIcon, setSeasonIcon ] = useState('');
 
@@ -40,10 +40,16 @@ function MonthsTasksBox({monthNumber, monthName}) {
     setSeasonIcon(getSeason(monthNumber.toString()));
   }, [monthNumber, monthName]);
 
+  function addNewTask(task){
+    setTasks([...tasks, task]);
+  }
+
   return (
     <div className={`MonthTaskBox__${seasonIcon}`}>
       <h2>{monthName} {seasonIcon}</h2>
       <TaskList tasks={tasks} />
+      <AddTaskForm addNewTask={addNewTask} month={monthName}/>
+
     </div>
     )
 }

@@ -9,7 +9,8 @@ const {
   getTasks,
   saveTask,
   getTasksByMonth,
-  getTasksByCrop
+  getTasksByCrop,
+  deleteTask
 } = require('./controllers/taskController');
 
 const {
@@ -33,6 +34,7 @@ router.get('/tasks', getTasks);
 router.get('/tasks/month/:month', getTasksByMonth);
 router.get('/tasks/crop/:crop', getTasksByCrop);
 router.post('/tasks', saveTask);
+router.delete('/tasks', deleteTask);
 
 // getWeather
 router.get('/weather', getWeather)

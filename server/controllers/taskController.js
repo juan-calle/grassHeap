@@ -19,8 +19,19 @@ async function saveTask(req, res) {
   }
 }
 
+async function deleteTask(req, res) {
+  const { _id } = req.body;
+  try {
+    const response = await Task.findByIdAndDelete({_id});
+    res.status(201).send(response);
+  } catch (err) {
+    res.status(400).send('failed to delete');
+  }
+}
+
 async function getTasksByMonth(req, res) {
-  const month = req.params.month;
+  let month = req.params.month;
+  month = month[0].toUpperCase() + month.slice(1).toLowerCase();
   try {
     const tasks = await Task.find({
       month
@@ -44,6 +55,7 @@ async function getTasksByCrop(req, res) {
 }
 
 module.exports = {
+  deleteTask,
   getTasksByCrop,
   getTasks,
   saveTask,

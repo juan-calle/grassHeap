@@ -6,6 +6,7 @@ const taskSchema = new mongoose.Schema({
   crop: String,
   task: String,
   plantID: Number,
+  userCreated: Boolean
 })
 
 const Task = mongoose.model('task', taskSchema)
