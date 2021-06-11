@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import TaskList from '../TaskList/TaskList'
-import { getMyPlants, getTasksByMonth } from '../../../services/ServerApiServices';
+import { deleteTask, getMyPlants, getTasksByMonth } from '../../../services/ServerApiServices';
 import './MonthTasksBox.css'
 import AddTaskForm from '../AddTaskForm/AddTaskForm';
 
@@ -32,24 +32,27 @@ function MonthsTasksBox({monthNumber, monthName}) {
   useEffect(()=>{
     getMyPlants().then(myPlants => {
       getTasksByMonth(monthName).then(tasks => {
-        // filter tasks to those which are relevant to plants saved in myPlants database
-        const myTasks = tasks.filter(task => myPlants.some(plant => plant.name === task.crop))
+        // filter tasks to those which are relevant to plants saved in myPlants database OR added manually
+        const myTasks = tasks.filter(task => myPlants.some(plant => plant.name === task.crop || task.userCreated))
         setTasks(myTasks)
       });
     });
     setSeasonIcon(getSeason(monthNumber.toString()));
   }, [monthNumber, monthName]);
 
-  function addNewTask(task){
+  function addNewTask(task) {
     setTasks([...tasks, task]);
+  }
+  function deleteThisTask(_id) {
+    setTasks([...tasks].filter(task => task._id !== _id))
+    deleteTask(_id);
   }
 
   return (
     <div className={`MonthTaskBox__${seasonIcon}`}>
       <h2>{monthName} {seasonIcon}</h2>
-      <TaskList tasks={tasks} />
+      <TaskList deleteThisTask={deleteThisTask} tasks={tasks} />
       <AddTaskForm addNewTask={addNewTask} month={monthName}/>
-
     </div>
     )
 }

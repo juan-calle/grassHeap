@@ -1,5 +1,16 @@
 .taskItem_crop_icon {
   display: inline-block;
   width: 1rem;
+}
 
+:disabled {
+  cursor: not-allowed;
+}
+
+.tooltiptext {
+  visibility: hidden;
+}
+.disabled:hover .tooltiptext {
+  visibility: visible;
+  z-index: 1;
 }

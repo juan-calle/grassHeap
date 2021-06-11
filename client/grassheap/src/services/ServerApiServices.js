@@ -18,13 +18,13 @@ exports.saveTask = async (task={}) => {
   return response.json();
 }
 
-exports.deleteTask = async(id) => {
+exports.deleteTask = async(_id={}) => {
   await fetch( `${base_url}/tasks`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(id)
+    body: JSON.stringify({_id})
   });
 }
 

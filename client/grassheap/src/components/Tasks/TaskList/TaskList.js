@@ -1,8 +1,7 @@
 import React from 'react';
 import TaskItem from '../TaskItem/TaskItem';
 
-function TaskList({tasks}){
-
+function TaskList({tasks, deleteThisTask}) {
   const noTasks = (
     <div className="TaskList_empty">
       <p>no tasks for your plants this month</p>
@@ -12,7 +11,7 @@ function TaskList({tasks}){
     (
       <ul key={i}>
         <li>
-          <TaskItem task={task}/>
+          <TaskItem deleteThisTask={deleteThisTask} task={task}/>
         </li>
       </ul>
     ))
