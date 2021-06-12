@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { getWeather } from "../../services/WeatherApiServices";
+import "./Weather.css";
 
 function Weather() {
   const [weather, setWeather] = useState({});
@@ -11,11 +12,10 @@ function Weather() {
       setWeather(APIweather);
     });
   }, []);
-
   return (
     <div className="Weather">
       <h1>
-        Weather in {weather.name}: {weather.weather[0].description}
+        Weather in {weather.name}: {weather.weather?.[0].description}
         <img className="Weather__icon" src={weather.icon_link}></img>
       </h1>
     </div>
