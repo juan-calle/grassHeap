@@ -49,7 +49,7 @@ function Plants() {
   }, [myPlants, plants]);
   return loadStatus ? (
     name === "all" ? (
-      <PlantList myPlants={myPlants} plants={plants} />
+      <PlantList className="PlantList" myPlants={myPlants} plants={plants} />
     ) : (
       <PlantDetails plants={plants} />
     )

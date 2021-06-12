@@ -6,7 +6,6 @@ import Navbar from "../NavBar/NavBar";
 import Plants from "../Plants/Plants/Plants";
 
 function App() {
-  console.log("rerendered");
   return (
     <Router>
       <div className="App">
