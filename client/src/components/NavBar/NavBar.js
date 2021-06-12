@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <div className="Navbar">
-      <a href="/">grassHeap🌳🌼</a>
-      <a href="/plants">Browse Plants</a>
+      <Link to="/">grassHeap🌳🌼</Link>
+      <Link to="/plants/all">Browse Plants</Link>
     </div>
   );
 }

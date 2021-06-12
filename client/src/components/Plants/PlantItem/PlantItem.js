@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPlantByName } from "../../../services/GrowStuffApiServices";
+import { Link } from "react-router-dom";
 import {
   removeFromMyPlants,
   saveToMyPlants,
@@ -7,7 +7,6 @@ import {
 import "./PlantItem.css";
 
 function PlantItem({ plant, inMyPlants }) {
-  const [detailsAvailable, setDetailsFlag] = useState(false);
   const [plantOwned, setOwned] = useState(false);
 
   useEffect(() => {
@@ -16,14 +15,18 @@ function PlantItem({ plant, inMyPlants }) {
 
   function savePlant() {
     setOwned(!plantOwned);
-    saveToMyPlants({ name: plant.slug, plantID: plant.id }).then((res) =>
-      console.log(res)
-    );
+    saveToMyPlants({ name: plant.slug, plantID: plant.id }).then((res) => {
+      // eslint-disable-next-line no-console
+      console.log(res);
+    });
   }
 
   function removePlant() {
     setOwned(!plantOwned);
-    removeFromMyPlants(plant.id).then((res) => console.log(res));
+    removeFromMyPlants(plant.id).then((res) => {
+      // eslint-disable-next-line no-console
+      console.log(res);
+    });
   }
 
   const removeButton = (
@@ -44,13 +47,13 @@ function PlantItem({ plant, inMyPlants }) {
     <div
       className="plantItem"
       style={{
-        backgroundImage: `url("${plant.thumbnail_url}")`,
+        backgroundImage: `url("${plant.details.attributes.main_image_path}")`,
       }}
     >
       <div className="PlantItem__text">
-        <a className="PlantItem__a" href={`/details/${plant.slug}`}>
+        <Link className="PlantItem__a" to={`/plants/${plant.slug}`}>
           {plant.name}
-        </a>
+        </Link>
         <p className="PlantItem__p">({plant.scientific_name})</p>
         {plantOwned ? removeButton : addButton}
       </div>

@@ -39,7 +39,6 @@ function MonthsTasksBox({ monthNumber, monthName }) {
   const [tasks, setTasks] = useState([]);
   const [seasonIcon, setSeasonIcon] = useState("");
 
-  console.log(monthNumber, monthName);
   useEffect(() => {
     getMyPlants().then((myPlants) => {
       getTasksByMonth(monthName).then((tasks) => {
@@ -54,7 +53,7 @@ function MonthsTasksBox({ monthNumber, monthName }) {
 
   useEffect(() => {
     setSeasonIcon(getSeason((monthNumber + 1).toString()));
-  }, []);
+  }, [monthNumber, monthName]);
 
   function addNewTask(task) {
     setTasks([...tasks, task]);

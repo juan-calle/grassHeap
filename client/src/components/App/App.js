@@ -2,23 +2,18 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Dashboard from "../Dashboard/Dashboard";
-import PlantDetails from "../Plants/PlantDetails/PlantDetails";
-import PlantList from "../Plants/PlantList/PlantList";
 import Navbar from "../NavBar/NavBar";
+import Plants from "../Plants/Plants/Plants";
 
 function App() {
+  console.log("rerendered");
   return (
     <Router>
       <div className="App">
         <Navbar />
         <Switch>
           <Route path="/" component={Dashboard} exact />
-          <Route path="/plants" exact component={PlantList} />
-          <Route
-            path="/details/:name"
-            className="PlantList"
-            component={PlantDetails}
-          />
+          <Route path="/plants/:name" component={Plants}></Route>
         </Switch>
       </div>
     </Router>
