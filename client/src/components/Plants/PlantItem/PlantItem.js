@@ -52,7 +52,7 @@ function PlantItem({ plant, inMyPlants }) {
         backgroundImage: `url("${plant.thumbnail_url}")`,
       }}
     >
-      <h4 href={`/${plant.slug}`}>{plant.name}</h4>
+      <a href={`/details/${plant.slug}`}>{plant.name}</a>
       <p>({plant.scientific_name})</p>
       {plantOwned ? removeButton : addButton}
     </div>
