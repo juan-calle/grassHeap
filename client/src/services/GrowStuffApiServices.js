@@ -1,4 +1,4 @@
-const base_url = 'http://localhost:3001';
+const base_url = "http://localhost:3001";
 
 exports.getAllPlants = async () => {
   try {
@@ -8,14 +8,14 @@ exports.getAllPlants = async () => {
   } catch (err) {
     return err;
   }
-}
+};
 
-exports.getPlantByName = async (name) => {
+exports.getPlantByName = async (name = "") => {
   try {
     const JSONPlant = await fetch(`${base_url}/plant/${name}`);
     const plant = await JSONPlant.json();
-    return plant
+    return plant;
   } catch (err) {
-      return err
+    return err;
   }
-}
+};
