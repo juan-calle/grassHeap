@@ -1,3 +1,14 @@
 .Weather {
   border: 2px solid grey;
+  border-radius: 10%;
+  margin: 5%;
+}
+
+.Weather__icon {
+  cursor: pointer;
+  animation: all 400ms;
+}
+
+.Weather__icon:hover {
+  opacity: 60%;
 }

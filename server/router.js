@@ -40,7 +40,7 @@ router.post("/tasks", saveTask);
 router.delete("/tasks", deleteTask);
 
 // getWeather
-router.get("/weather", getWeather);
-router.get("/forecast", getFiveDayForecast);
+router.post("/weather", getWeather);
+router.post("/forecast", getFiveDayForecast);
 
 module.exports = router;
