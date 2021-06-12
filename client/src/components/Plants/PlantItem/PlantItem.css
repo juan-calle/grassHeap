@@ -22,3 +22,16 @@ PlantItem__btn {
 .PlantItem__remove {
   background-color: rgb(245, 159, 159);
 }
+
+.PlantItem__a {
+  background-color: rgba(255, 255, 255, 0.692);
+}
+
+.PlantItem__p {
+  background-color: rgba(255, 255, 255, 0.692);
+}
+
+.PlantItem__text {
+  /* position: absolute; */
+  /* top: 0.1rem; */
+}

@@ -7,14 +7,10 @@ import {
 import "./PlantItem.css";
 
 function PlantItem({ plant, inMyPlants }) {
-  const [detailsAvailable, setDetailsFlag] = useState(true);
+  const [detailsAvailable, setDetailsFlag] = useState(false);
   const [plantOwned, setOwned] = useState(false);
 
   useEffect(() => {
-    getPlantByName(plant.slug).then((plantDetails) => {
-      // assigns boolean flag to weather further plant details are available from the GS API
-      if (plantDetails.openfarm_data === false) setDetailsFlag(false);
-    });
     setOwned(inMyPlants);
   }, [inMyPlants]);
 
@@ -44,7 +40,6 @@ function PlantItem({ plant, inMyPlants }) {
       save {plant.name} to myPlants
     </button>
   );
-
   const displayPlant = (
     <div
       className="plantItem"
@@ -52,13 +47,17 @@ function PlantItem({ plant, inMyPlants }) {
         backgroundImage: `url("${plant.thumbnail_url}")`,
       }}
     >
-      <a href={`/details/${plant.slug}`}>{plant.name}</a>
-      <p>({plant.scientific_name})</p>
-      {plantOwned ? removeButton : addButton}
+      <div className="PlantItem__text">
+        <a className="PlantItem__a" href={`/details/${plant.slug}`}>
+          {plant.name}
+        </a>
+        <p className="PlantItem__p">({plant.scientific_name})</p>
+        {plantOwned ? removeButton : addButton}
+      </div>
     </div>
   );
 
-  return detailsAvailable ? displayPlant : null;
+  return displayPlant;
 }
 
 export default PlantItem;
