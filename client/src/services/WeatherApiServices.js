@@ -10,8 +10,9 @@ exports.getWeather = async (city = {}) => {
       body: JSON.stringify(city),
     });
     const weather = await JSONweather.json();
+    if (weather.cod === "400" || weather.cod === "404") throw new Error();
     return weather;
   } catch (err) {
-    return err;
+    throw new Error(400);
   }
 };
