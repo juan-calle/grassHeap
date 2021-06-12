@@ -14,7 +14,7 @@ function TaskItem({ task, deleteThisTask }) {
   );
 
   return (
-    <div>
+    <div className="TaskItem">
       <h3>
         {task.crop}{" "}
         <img

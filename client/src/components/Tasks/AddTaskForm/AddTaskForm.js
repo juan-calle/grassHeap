@@ -28,18 +28,19 @@ function AddTaskForm({ month, addNewTask }) {
 
   return (
     <form className="submitForm" onSubmit={(e) => submitHandler(e)}>
-      <label>Crop</label>
+      <input
+        className="form__input"
+        value={task}
+        type="text"
+        placeholder="Add custom task for this month"
+        onChange={(e) => updateTask(e)}
+      ></input>
       <Dropdown
+        className="form__input form__input--dropDown"
         options={options}
         onChange={(e) => updateCrop(e)}
         placeholder="assign to crop"
       />
-      <input
-        value={task}
-        type="text"
-        placeholder="Add a task"
-        onChange={(e) => updateTask(e)}
-      ></input>
       <input type="submit"></input>
     </form>
   );
