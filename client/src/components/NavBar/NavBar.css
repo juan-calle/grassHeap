@@ -1,13 +1,93 @@
 .Navbar {
-  background-color: black;
+  background-color: var(--oxford-blue);
+  height: 4vh;
+  padding: 5px 0;
 }
 
-.NavLink {
-  background-color: olive;
-  padding: 5px;
-  color: white;
+.navElement {
+  background-color: var(--oxford-blue);
+  font-weight: bold;
+  font-size: larger;
+  padding: 0 5px;
+  color: var(--cultured);
+  text-decoration: none; /* no underline */
+  height: 100%;
 }
 
 .NavLink:hover {
-  background-color: olivedrab;
+  background-color: var(--blue-pantone);
+  color: var(--cultured);
+}
+
+.Navbar__appLinks {
+  height: 100%;
+  float: left;
+}
+
+.Navbar__externalLinks {
+  height: 100%;
+  float: right;
+}
+
+.hamburger {
+  display: none;
+}
+#toggle1 {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .tasks__allmonths {
+    flex-direction: column;
+    align-items: center;
+    width: 60vw;
+  }
+  .tasks__month {
+    width: 80%;
+  }
+
+  .hamburger {
+    /* height: 45px; */
+    /* margin: 10px; */
+    display: -ms-grid;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    z-index: 1;
+    float: right;
+  }
+  .hamburger div {
+    background-color: var(--cultured);
+    position: relative;
+    width: 40px;
+    height: 5px;
+    margin-top: 7px;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+
+  #toggle1 {
+    display: none;
+  }
+
+  #toggle1:checked + .hamburger .top {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    margin-top: 22.5px;
+  }
+
+  #toggle1:checked + .hamburger .meat {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin-top: -5px;
+  }
+
+  #toggle1:checked + .hamburger .bottom {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  #toggle1:checked ~ .menu1 {
+    height: 340px;
+  }
 }

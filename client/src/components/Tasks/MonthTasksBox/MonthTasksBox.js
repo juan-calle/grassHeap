@@ -5,35 +5,9 @@ import {
   getMyPlants,
   getTasksByMonth,
 } from "../../../services/ServerApiServices";
-import "./MonthTasksBox.css";
 import AddTaskForm from "../AddTaskForm/AddTaskForm";
-
-function getSeason(monthNumber) {
-  let season = "";
-  switch (monthNumber) {
-    case "12":
-    case "1":
-    case "2":
-      season = "⛄";
-      break;
-    case "3":
-    case "4":
-    case "5":
-      season = "🌼";
-      break;
-    case "6":
-    case "7":
-    case "8":
-      season = "🌞";
-      break;
-    case "9":
-    case "10":
-    case "11":
-      season = "🍂";
-      break;
-  }
-  return season;
-}
+import { getSeason } from "./getSeasonFunction";
+import "./MonthTasksBox.css";
 
 function MonthsTasksBox({ monthNumber, monthName }) {
   const [tasks, setTasks] = useState([]);
@@ -64,7 +38,7 @@ function MonthsTasksBox({ monthNumber, monthName }) {
   }
 
   return (
-    <div className={`MonthTaskBox__${seasonIcon}`}>
+    <div className={`MonthTaskBox MonthTaskBox__${monthNumber}`}>
       <h2>
         {monthName} {seasonIcon}
       </h2>
