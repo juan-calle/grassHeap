@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getGIF } from "../../../services/ServerApiServices";
 import "./WeatherDetails.css";
 
 function WeatherDetails({ weather, changeCity }) {
-  const weatherIcons = {
-    "01": "clear sky",
-  };
+  const [gifPath, setGifPath] = useState("");
+
+  useEffect(() => {
+    const query = weather.weather[0].main;
+    getGIF({ query }).then((resultsObj) => {
+      const randomNumber = Math.floor(Math.random() * resultsObj.data.length);
+      const imageURL = resultsObj.data[randomNumber].images.fixed_height.url;
+      setGifPath(imageURL);
+    });
+  }, [weather]);
 
   return (
     <h1>
@@ -15,7 +23,7 @@ function WeatherDetails({ weather, changeCity }) {
         rel="noreferrer"
         target="_blank"
       >
-        <img className="Weather__icon" src={weather.icon_link}></img>
+        <img className="Weather__icon" src={gifPath}></img>
       </a>
     </h1>
   );
