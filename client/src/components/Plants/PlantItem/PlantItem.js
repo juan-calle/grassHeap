@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AddButton from "./PlantItemAddBtn/AddBtn";
+import RemoveBtn from "./PlantItemRemoveBtn/RemoveBtn";
 import {
   removeFromMyPlants,
   saveToMyPlants,
@@ -29,21 +31,7 @@ function PlantItem({ plant, inMyPlants }) {
     });
   }
 
-  const removeButton = (
-    <button
-      className="btn PlantItem__btn PlantItem__remove"
-      onClick={removePlant}
-    >
-      –
-    </button>
-  );
-
-  const addButton = (
-    <button className="btn PlantItem__btn PlantItem__save" onClick={savePlant}>
-      +
-    </button>
-  );
-  const displayPlant = (
+  return (
     <div
       className="plantItem"
       style={{
@@ -58,12 +46,14 @@ function PlantItem({ plant, inMyPlants }) {
         <p className="PlantItem__p">{plant.scientific_name}</p>
       </div>
       <div className="PlantItem__btnDiv">
-        {plantOwned ? removeButton : addButton}
+        {plantOwned ? (
+          <RemoveBtn removePlant={removePlant} />
+        ) : (
+          <AddButton savePlant={savePlant} />
+        )}
       </div>
     </div>
   );
-
-  return displayPlant;
 }
 
 export default PlantItem;

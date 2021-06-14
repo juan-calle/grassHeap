@@ -15,7 +15,6 @@ function Weather() {
     setCity(promptResult);
     return promptResult;
   }
-  // hook runs after render
   useEffect(() => {
     localStorage.getItem("city")
       ? setCity(localStorage.getItem("city"))

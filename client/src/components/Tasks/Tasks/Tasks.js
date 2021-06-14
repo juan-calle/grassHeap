@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import Spinner from '../Spinner/spinner';
 import MonthTaskBox from "../MonthTasksBox/MonthTasksBox";
-import { months } from "../../../utils/months";
+import { months, bgColor } from "../../../utils/months";
 import "./Tasks.css";
 
 function Tasks() {
@@ -9,21 +9,6 @@ function Tasks() {
 
   const lastMonth = currentMonth - 1;
   const nextMonth = currentMonth + 1;
-
-  const bgColor = {
-    January: "#382C05",
-    February: "#5E4A08",
-    March: "#83670B",
-    April: "#AA850E",
-    May: "#D0A311",
-    June: "#EDBC1D",
-    July: "#F0C742",
-    August: "#F3D268",
-    September: "#F6DE8E",
-    October: "#F7E3A1",
-    November: "#F8E8B4",
-    December: "#FAEEC7",
-  };
 
   useEffect(() => {
     const today = new Date();
