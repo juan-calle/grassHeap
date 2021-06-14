@@ -51,18 +51,18 @@ function App() {
   }, [myPlants, plants]);
 
   return loadStatus ? (
-    <plantsContext.Provider value={{ myPlants, plants }}>
-      <Router>
-        <div className="App">
-          <Navbar />
+    <div className="App">
+      <plantsContext.Provider value={{ myPlants, plants }}>
+        <Navbar />
+        <Router>
           <Switch>
             <Route path="/" component={Dashboard} exact />
-            <Route path="/plants" exact component="PlantList" />
             <Route path="/plants/:name" component={Plants}></Route>
+            <Route path="/plants" component="PlantList" exact />
           </Switch>
-        </div>
-      </Router>
-    </plantsContext.Provider>
+        </Router>
+      </plantsContext.Provider>
+    </div>
   ) : (
     <img
       className="daisies"
