@@ -1,7 +1,24 @@
 .PlantList {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
+  margin: 2%;
+}
+
+.PlantList__sort--btn {
+  width: auto;
+  height: 10vh;
+  padding: 2vh;
+  margin: 2vh;
+}
+
+@media only screen and (min-width: 600px) {
+  .PlantList__sort {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .PlantList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 30vh);
+  }
 }

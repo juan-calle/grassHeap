@@ -27,9 +27,9 @@ function PlantDetails() {
         <img src={plantDetails.details?.attributes?.svg_icon} />
       </h1>
       {commonNames}
-      <p>{plantDetails.details.attributes.description}</p>
-      <p>{plantDetails.details.attributes.sun_requirements}</p>
-      <img src={plantDetails.details.attributes.main_image_path}></img>
+      <p>{plantDetails.details?.attributes.description}</p>
+      <p>{plantDetails.details?.attributes.sun_requirements}</p>
+      <img src={plantDetails.details?.attributes.main_image_path}></img>
     </div>
   );
 }

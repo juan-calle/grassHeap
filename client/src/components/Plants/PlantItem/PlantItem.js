@@ -34,13 +34,13 @@ function PlantItem({ plant, inMyPlants }) {
       className="btn PlantItem__btn PlantItem__remove"
       onClick={removePlant}
     >
-      remove {plant.name} from myPlants
+      –
     </button>
   );
 
   const addButton = (
     <button className="btn PlantItem__btn PlantItem__save" onClick={savePlant}>
-      save {plant.name} to myPlants
+      +
     </button>
   );
   const displayPlant = (
@@ -53,8 +53,11 @@ function PlantItem({ plant, inMyPlants }) {
       <div className="PlantItem__text">
         <Link className="PlantItem__a" to={`/plants/${plant.slug}`}>
           {plant.name}
+          <img src={plant.details?.attributes?.svg_icon} />
         </Link>
-        <p className="PlantItem__p">({plant.scientific_name})</p>
+        <p className="PlantItem__p">{plant.scientific_name}</p>
+      </div>
+      <div className="PlantItem__btnDiv">
         {plantOwned ? removeButton : addButton}
       </div>
     </div>

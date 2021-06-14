@@ -12,7 +12,16 @@ function PlantList() {
     );
   });
 
-  return plantsDisplay;
+  return (
+    <div className="PlantList">
+      <div className="PlantList__sort">
+        --buttons not currently working--
+        <button className="PlantList__sort--btn">Sort by Popularity</button>
+        <button className="PlantList__sort--btn">Sort Alphabetically</button>
+      </div>
+      {plantsDisplay}
+    </div>
+  );
 }
 
 export default PlantList;

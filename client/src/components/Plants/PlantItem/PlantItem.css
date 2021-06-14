@@ -1,37 +1,54 @@
 .plantItem {
-  border: 2px solid grey;
+  display: flex;
+  justify-content: space-between;
   background-size: cover;
   border-radius: 5px;
-}
-
-.plantItem__plantImage {
-  /* float: left; */
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-
-PlantItem__btn {
-  margin: 10% 2%;
-}
-
-.PlantItem__save {
-  background-color: rgb(225, 255, 181);
-}
-
-.PlantItem__remove {
-  background-color: rgb(245, 159, 159);
-}
-
-.PlantItem__a {
-  background-color: rgba(255, 255, 255, 0.692);
-}
-
-.PlantItem__p {
-  background-color: rgba(255, 255, 255, 0.692);
+  filter: drop-shadow(5px 5px 2px rgba(88, 88, 88, 0.664))
+    drop-shadow(-1px -1px 0 rgba(88, 88, 88, 0.664));
+  margin: 3%;
 }
 
 .PlantItem__text {
-  /* position: absolute; */
-  /* top: 0.1rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  background-color: rgba(255, 255, 255, 0.692);
+}
+
+.PlantItem__btn {
+  font-size: large;
+  font-weight: bold;
+  border-radius: 50%;
+  font-weight: bold;
+  color: var(--cultured);
+  position: absolute;
+  top: -5%;
+  right: -5%;
+  /* width: 20%; */
+}
+
+.PlantItem__save {
+  background-color: var(--oxford-blue);
+}
+
+.PlantItem__remove {
+  background-color: var(--maize-crayola);
+  color: black;
+}
+
+.PlantItem__btnDiv {
+  width: 60%;
+}
+
+.PlantItem__text a {
+  text-decoration: none;
+}
+
+.PlantItem__text a::first-letter {
+  text-transform: capitalize;
+}
+
+.PlantItem__text p {
+  padding: 0 15%;
 }
