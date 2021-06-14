@@ -1,0 +1,13 @@
+.App__loading {
+  margin: auto;
+  width: 50%;
+}
+
+.daisies {
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  z-index: 1;
+  width: 30vh;
+  height: 30vh;
+}

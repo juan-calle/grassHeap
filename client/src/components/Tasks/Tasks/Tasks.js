@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import Spinner from '../Spinner/spinner';
 import MonthTaskBox from "../MonthTasksBox/MonthTasksBox";
+import { months } from "../../../utils/months";
 import "./Tasks.css";
 
 function Tasks() {
@@ -8,20 +9,6 @@ function Tasks() {
 
   const lastMonth = currentMonth - 1;
   const nextMonth = currentMonth + 1;
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
   const bgColor = {
     January: "#382C05",

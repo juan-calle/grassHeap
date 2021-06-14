@@ -8,17 +8,3 @@
 /* CSS HEX
 https://coolors.co/efc743-141414-eef0f2-0d21a1-011638
 */
-
-.App__loading {
-  margin: auto;
-  width: 50%;
-}
-
-.daisies {
-  position: absolute;
-  right: 300px;
-  bottom: 30px;
-  z-index: 1;
-  width: 30vh;
-  height: 30vh;
-}

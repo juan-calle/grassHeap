@@ -1,33 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { months } from "../../utils/months";
 import "./NavBar.css";
 
 function Navbar() {
   const today = new Date();
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+
   const currentMonth = months[today.getMonth()];
 
   return (
     <div className="Navbar">
       <div className="Navbar__appLinks">
         <Link className="NavLink navElement" to="/">
-          Dashboard 🌱
+          Dashboard <span className="NavElement__icon">🌱</span>
         </Link>
         <Link className="NavLink navElement" to="/plants">
-          Browse Plants 🥕
+          Browse Plants <span className="NavElement__icon">🥕</span>
         </Link>
       </div>
 
@@ -46,7 +34,8 @@ function Navbar() {
           rel="noreferrer"
           target="_blank"
         >
-          RHS 🍀
+          RHS
+          <span className="NavElement__icon">🍀</span>
         </a>
         <a
           className="dropdown NavLink navElement"
@@ -54,7 +43,8 @@ function Navbar() {
           rel="noreferrer"
           target="_blank"
         >
-          BBC Weather ⛅
+          BBC Weather
+          <span className="NavElement__icon">⛅</span>
         </a>
       </div>
     </div>
