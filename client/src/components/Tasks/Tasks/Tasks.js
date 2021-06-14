@@ -27,7 +27,7 @@ function Tasks() {
       <div className="tasks__allmonths">
         <div
           // TODO figure out why bgColor inline style not working
-          style={{ backgroundColor: bgColor.monthName }}
+          style={{ backgroundColor: bgColor[lastMonth] }}
           className={`tasks__month tasks__month--${lastMonth}`}
         >
           <MonthTaskBox monthNumber={lastMonth} monthName={months[lastMonth]} />
@@ -42,7 +42,7 @@ function Tasks() {
           />
         </div>
         <div
-          style={{ backgroundColor: bgColor.December }}
+          style={{ backgroundColor: bgColor[currentMonth] }}
           className={`tasks__month tasks__month--${nextMonth}`}
         >
           <MonthTaskBox monthNumber={nextMonth} monthName={months[nextMonth]} />

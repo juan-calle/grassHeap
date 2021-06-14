@@ -1,7 +1,9 @@
 .Navbar {
+  /* position: fixed; */
   background-color: var(--oxford-blue);
   height: 4vh;
   padding: 5px 0;
+  z-index: 1;
 }
 
 .navElement {

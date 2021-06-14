@@ -1,5 +1,5 @@
 const base_url = "https://api.openweathermap.org/data/2.5";
-const api_key = process.env.API_KEY;
+const api_key = process.env.OPENWEATHER_API_KEY;
 const fetch = require("node-fetch");
 
 async function getWeather(req, res) {
@@ -11,7 +11,7 @@ async function getWeather(req, res) {
     if (weather.cod === "400") throw new Error();
     res.status(200).send(weather);
   } catch (err) {
-    return res.status(400).send("bad request");
+    res.status(400).send("bad request");
   }
 }
 

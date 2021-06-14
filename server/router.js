@@ -22,6 +22,7 @@ const {
   getWeather,
   getFiveDayForecast,
 } = require("./controllers/weatherController");
+const { getGIFByQuery } = require("./controllers/gifController");
 
 // interact with GrowStuff API
 router.get("/plants", getAllPlants);
@@ -42,5 +43,8 @@ router.delete("/tasks", deleteTask);
 // getWeather
 router.post("/weather", getWeather);
 router.post("/forecast", getFiveDayForecast);
+
+// GET GIPH
+router.post("/gifs", getGIFByQuery);
 
 module.exports = router;
