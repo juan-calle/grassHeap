@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { saveTask } from "../../../services/ServerApiServices";
+import { plantsContext } from "../../App/App";
 import "./AddTaskForm.css";
 
 function AddTaskForm({ month, addNewTask }) {
-  const options = ["one", "two", "three"];
   const [crop, setCrop] = useState("");
   const [task, setTask] = useState("");
+
+  const { myPlants } = useContext(plantsContext);
+
+  const plantList = myPlants.map((plant) => plant.name).sort();
 
   const updateTask = (e) => {
     setTask(e.target.value);
@@ -37,11 +41,11 @@ function AddTaskForm({ month, addNewTask }) {
       ></input>
       <Dropdown
         className="form__input form__input--dropDown"
-        options={options}
+        options={["misc.", ...plantList]}
         onChange={(e) => updateCrop(e)}
         placeholder="assign to crop"
       />
-      <input type="submit"></input>
+      <input type="submit" value="submit"></input>
     </form>
   );
 }
