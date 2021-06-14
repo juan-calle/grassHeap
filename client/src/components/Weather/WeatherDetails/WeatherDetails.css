@@ -1,3 +1,13 @@
+.WeatherDetails {
+  display: flex;
+  justify-content: center;
+}
+
+.WeatherDetails__text {
+  text-align: center;
+  width: 50%;
+}
+
 a {
   color: olive;
 }
@@ -14,3 +24,20 @@ a:hover {
 --dim-gray: #666b6aff;
 https://coolors.co/a0eec0-8ae9c1-86cd82-72a276-666b6a
 */
+.mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .WeatherDetails {
+    flex-direction: column;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+}

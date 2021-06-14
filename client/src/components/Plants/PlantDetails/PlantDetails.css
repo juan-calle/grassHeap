@@ -1,0 +1,46 @@
+.PlantDetails {
+  text-align: center;
+  margin: 2%;
+}
+
+.PlantDetails h1::first-letter {
+  text-transform: capitalize;
+}
+.PlantDetails__commonNames::first-letter {
+  /* TODO this doesnt work? */
+  text-transform: capitalize;
+}
+
+.PlantDetails__img {
+  width: 70%;
+  border-radius: 5%;
+}
+
+.PlantDetails__text * {
+  margin: 0.4%;
+}
+
+.PlantDetails__images {
+  position: relative;
+}
+
+.PlantDetails__overlay {
+  max-width: 10%;
+  position: absolute;
+  right: 20%;
+  bottom: 0;
+  z-index: 1;
+}
+
+@media only screen and (min-width: 600px) {
+  .PlantDetails {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .PlantDetails__img {
+    margin: auto;
+    width: 50%;
+    border-radius: 5%;
+  }
+}

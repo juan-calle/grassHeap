@@ -15,17 +15,29 @@ function WeatherDetails({ weather, changeCity }) {
   }, [weather]);
 
   return (
-    <h1>
-      Weather in <a onClick={changeCity}>{weather.name}</a> today:{" "}
-      {weather.weather[0]?.description}
-      <a
-        href={`https://www.bbc.co.uk/weather/${weather.id}`}
-        rel="noreferrer"
-        target="_blank"
-      >
-        <img className="Weather__icon" src={gifPath}></img>
-      </a>
-    </h1>
+    <div className="WeatherDetails">
+      <div className="WeatherDetails__text desktop">
+        <h1>
+          Weather in <a onClick={changeCity}>{weather.name}</a> today:{" "}
+          {weather.weather[0]?.description}
+        </h1>
+      </div>
+      <div className="WeatherDetails__text mobile">
+        <h1>
+          <a onClick={changeCity}>{weather.name}</a>:{" "}
+          {weather.weather[0]?.description}
+        </h1>
+      </div>
+      <div className="WeatherDetails__GIF">
+        <a
+          href={`https://www.bbc.co.uk/weather/${weather.id}`}
+          rel="noreferrer"
+          target="_blank"
+        >
+          <img className="Weather__icon" src={gifPath}></img>
+        </a>
+      </div>
+    </div>
   );
 }
 
