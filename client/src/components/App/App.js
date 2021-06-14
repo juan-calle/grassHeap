@@ -1,14 +1,15 @@
 import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
 import Dashboard from "../Dashboard/Dashboard";
 import Navbar from "../NavBar/NavBar";
-import Plants from "../Plants/Plants/Plants";
+import PlantList from "../Plants/PlantList/PlantList";
+import PlantDetails from "../Plants/PlantDetails/PlantDetails";
+import { getMyPlants } from "../../services/ServerApiServices";
 import {
   getAllPlants,
   getPlantByName,
 } from "../../services/GrowStuffApiServices";
-import { getMyPlants } from "../../services/ServerApiServices";
+import "./App.css";
 
 export const plantsContext = createContext(null);
 
@@ -53,22 +54,25 @@ function App() {
   return loadStatus ? (
     <div className="App">
       <plantsContext.Provider value={{ myPlants, plants }}>
-        <Navbar />
         <Router>
+          <Navbar />
           <Switch>
-            <Route path="/" component={Dashboard} exact />
-            <Route path="/plants/:name" component={Plants}></Route>
-            <Route path="/plants" component="PlantList" exact />
+            <Route path="/plants/:name" component={PlantDetails} />
+            <Route exact path="/plants" component={PlantList} />
+            <Route exact path="/" component={Dashboard} />
           </Switch>
         </Router>
       </plantsContext.Provider>
     </div>
   ) : (
-    <img
-      className="daisies"
-      src="https://uploads-ssl.webflow.com/5ea82bf973106e1765b18a5f/5fd0d4198fecb12496f3bbdb_tumbs-up-4_1.gif"
-      alt="swaying daisies"
-    ></img>
+    <div className="App__loading">
+      <h3>Loading DOM trees and DOM vegetables...</h3>
+      <img
+        className="daisies"
+        src="https://uploads-ssl.webflow.com/5ea82bf973106e1765b18a5f/5fd0d4198fecb12496f3bbdb_tumbs-up-4_1.gif"
+        alt="swaying daisies"
+      ></img>
+    </div>
   );
 }
 

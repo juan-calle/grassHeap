@@ -9,6 +9,11 @@
 https://coolors.co/efc743-141414-eef0f2-0d21a1-011638
 */
 
+.App__loading {
+  margin: auto;
+  width: 50%;
+}
+
 .daisies {
   position: absolute;
   right: 300px;

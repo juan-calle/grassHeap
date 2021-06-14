@@ -26,7 +26,7 @@ function Navbar() {
         <Link className="NavLink navElement" to="/">
           Dashboard 🌱
         </Link>
-        <Link className="NavLink navElement" to="/plants/all">
+        <Link className="NavLink navElement" to="/plants">
           Browse Plants 🥕
         </Link>
       </div>
