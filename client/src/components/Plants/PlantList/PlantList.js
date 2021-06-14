@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { plantsContext } from "../../App/App";
 import PlantItem from "../PlantItem/PlantItem";
 import "./PlantList.css";
 
-function PlantList({ plants, myPlants }) {
+function PlantList() {
+  const { plants, myPlants } = useContext(plantsContext);
   const plantsDisplay = plants.map((plant, i) => {
     const inMyPlants = myPlants.some((myPlant) => myPlant.name === plant.slug);
     return (

@@ -2,9 +2,13 @@ import React from "react";
 import "./WeatherDetails.css";
 
 function WeatherDetails({ weather, changeCity }) {
+  const weatherIcons = {
+    "01": "clear sky",
+  };
+
   return (
     <h1>
-      Weather in <a onClick={changeCity}>{weather.name}</a> today:
+      Weather in <a onClick={changeCity}>{weather.name}</a> today:{" "}
       {weather.weather[0]?.description}
       <a
         href={`https://www.bbc.co.uk/weather/${weather.id}`}
