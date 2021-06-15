@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import Spinner from '../Spinner/spinner';
 import MonthTaskBox from "../MonthTasksBox/MonthTasksBox";
 import { months, bgColor } from "../../../utils/months";
 import "./Tasks.css";

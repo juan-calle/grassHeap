@@ -1,35 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddButton from "./PlantItemAddBtn/AddBtn";
 import RemoveBtn from "./PlantItemRemoveBtn/RemoveBtn";
-import {
-  removeFromMyPlants,
-  saveToMyPlants,
-} from "../../../services/ServerApiServices";
 import "./PlantItem.css";
+import { plantsContext } from "../../App/App";
 
 function PlantItem({ plant, inMyPlants }) {
   const [plantOwned, setOwned] = useState(false);
-
   useEffect(() => {
     setOwned(inMyPlants);
   }, [inMyPlants]);
 
-  function savePlant() {
-    setOwned(!plantOwned);
-    saveToMyPlants({ name: plant.slug, plantID: plant.id }).then((res) => {
-      // eslint-disable-next-line no-console
-      console.log(res);
-    });
-  }
-
-  function removePlant() {
-    setOwned(!plantOwned);
-    removeFromMyPlants(plant.id).then((res) => {
-      // eslint-disable-next-line no-console
-      console.log(res);
-    });
-  }
+  const { savePlant, removePlant } = useContext(plantsContext);
 
   return (
     <div
@@ -39,7 +21,10 @@ function PlantItem({ plant, inMyPlants }) {
       }}
     >
       <div className="PlantItem__text">
-        <Link className="PlantItem__a" to={`/plants/${plant.slug}`}>
+        <Link
+          className="PlantItem__a PlantItem__name"
+          to={`/plants/${plant.slug}`}
+        >
           {plant.name}
           <img src={plant.details?.attributes?.svg_icon} />
         </Link>
@@ -47,9 +32,9 @@ function PlantItem({ plant, inMyPlants }) {
       </div>
       <div className="PlantItem__btnDiv">
         {plantOwned ? (
-          <RemoveBtn removePlant={removePlant} />
+          <RemoveBtn removePlant={() => removePlant(plant.id)} />
         ) : (
-          <AddButton savePlant={savePlant} />
+          <AddButton savePlant={() => savePlant(plant)} />
         )}
       </div>
     </div>

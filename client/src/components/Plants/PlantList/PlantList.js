@@ -6,22 +6,26 @@ import "./PlantList.css";
 function PlantList() {
   const { plants, myPlants } = useContext(plantsContext);
 
-  // useEffect();
-
-  function sortPlants(method = "p") {
+  // TODO implement sort buttons
+  function sortPlants(method = "a") {
     switch (method) {
       case "p":
+        plants.sort((plant1, plant2) =>
+          plant1._score > plant2._score ? -1 : 1
+        );
         break;
       case "a":
-        plants.sort();
+        plants.sort((plant1, plant2) =>
+          plant1.name.toLowerCase().localeCompare(plant2.name.toLowerCase())
+        );
+        break;
     }
     return plants;
   }
 
   const plantsDisplay = plants
-    .sort(
-      (plant1, plant2) =>
-        -plant1.name.toLowerCase().localeCompare(plant2.name.toLowerCase())
+    .sort((plant1, plant2) =>
+      plant1.name.toLowerCase().localeCompare(plant2.name.toLowerCase())
     )
     .map((plant, i) => {
       const inMyPlants = myPlants.some(
@@ -30,10 +34,8 @@ function PlantList() {
       return (
         <PlantItem key={i} inMyPlants={inMyPlants} plant={plant}></PlantItem>
       );
-    })
-    .sort((plant1, plant2) => {
-      return plant1.name > plant2.name ? -1 : -1;
     });
+
   return (
     <div className="PlantList">
       <div className="PlantList__sort">

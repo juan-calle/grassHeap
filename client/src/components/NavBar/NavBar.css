@@ -13,7 +13,6 @@
   padding: 0 5px;
   color: var(--cultured);
   text-decoration: none; /* no underline */
-  height: 100%;
 }
 
 .NavLink:hover {
@@ -26,11 +25,6 @@
   float: left;
 }
 
-.Navbar__externalLinks {
-  height: 100%;
-  float: right;
-}
-
 .hamburger {
   display: none;
 }
@@ -38,24 +32,25 @@
   display: none;
 }
 
-@media only screen and (max-width: 600px) {
-  .tasks__allmonths {
-    flex-direction: column;
-    align-items: center;
-    width: 60vw;
+/* for desktop/laptop */
+@media only screen and (min-width: 600px) {
+  .Navbar__externalLinks {
+    height: 100%;
+    float: right;
   }
-  .tasks__month {
-    width: 80%;
-  }
+}
 
+/* for mobile */
+@media only screen and (max-width: 600px) {
   .hamburger {
-    /* height: 45px; */
+    height: 4vh;
     /* margin: 10px; */
+    position: relative;
     display: -ms-grid;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     justify-items: center;
-    z-index: 1;
+    z-index: 120;
     float: right;
   }
   .hamburger div {
@@ -63,25 +58,21 @@
     position: relative;
     width: 40px;
     height: 5px;
-    margin-top: 7px;
+    margin: 0 1vh 1vh 0;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
-  }
-
-  #toggle1 {
-    display: none;
   }
 
   #toggle1:checked + .hamburger .top {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    margin-top: 22.5px;
+    margin-top: 1vh;
   }
 
   #toggle1:checked + .hamburger .meat {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
-    margin-top: -5px;
+    margin-top: -1.5vh;
   }
 
   #toggle1:checked + .hamburger .bottom {
@@ -89,12 +80,39 @@
     transform: scale(0);
   }
 
-  #toggle1:checked ~ .menu1 {
-    height: 340px;
+  #toggle1:checked ~ .Navbar__externalLinks {
+    height: 50%;
   }
-}
-@media only screen and (min-width: 600px) {
-  .navElement__icon {
-    display: hidden;
+
+  /* Menu */
+  .Navbar__externalLinks {
+    position: relative;
+    width: 100%;
+    background-color: var(--oxford-blue);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.4s ease;
+    z-index: 120;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  .Navbar__externalLinks a:first-child {
+    margin-top: 2vh;
+  }
+
+  .Navbar__externalLinks a:last-child {
+    margin-bottom: 2vh;
+  }
+
+  .dropdown {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
   }
 }

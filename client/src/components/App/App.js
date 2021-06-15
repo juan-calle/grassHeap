@@ -5,7 +5,11 @@ import Navbar from "../NavBar/NavBar";
 import PlantList from "../Plants/PlantList/PlantList";
 import PlantDetails from "../Plants/PlantDetails/PlantDetails";
 import Loader from "../Loader/Loader";
-import { getMyPlants } from "../../services/ServerApiServices";
+import {
+  getMyPlants,
+  removeFromMyPlants,
+  saveToMyPlants,
+} from "../../services/ServerApiServices";
 import {
   getAllPlants,
   getPlantByName,
@@ -19,6 +23,29 @@ function App() {
   const [myPlants, setMyPlants] = useState([]);
   const [loadStatus, setLoadStatus] = useState(false);
 
+  function savePlant(plant) {
+    const newPlant = { name: plant.slug, plantID: plant.id };
+    try {
+      saveToMyPlants(newPlant).then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res);
+      });
+      setMyPlants((oldList) => [...oldList, newPlant]);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function removePlant(plantID) {
+    removeFromMyPlants(plantID).then((res) => {
+      // eslint-disable-next-line no-console
+      console.log(res);
+    });
+    const myPlantsCopy = myPlants.filter((plant) => plant.plantID !== plantID);
+    console.log(myPlantsCopy);
+    setMyPlants(myPlantsCopy);
+  }
+
   useEffect(() => {
     // make request to GrowStuff API /crops endpoint for all crops
     getAllPlants().then((plants) => {
@@ -27,7 +54,7 @@ function App() {
           // for each plant, make request to GrowStuff API /crops/:plant endpoint
           return getPlantByName(plant.slug).then((plantDetails) => {
             const details = plantDetails.openfarm_data;
-            // add detailsAvailable boolean flag to each plant object
+            // add details proeprty to each plant object
             plant.details = details;
             return plant;
           });
@@ -54,7 +81,10 @@ function App() {
 
   return loadStatus ? (
     <div className="App">
-      <plantsContext.Provider value={{ myPlants, plants }}>
+      {console.log(myPlants)}
+      <plantsContext.Provider
+        value={{ myPlants, plants, removePlant, savePlant }}
+      >
         <Router>
           <Navbar />
           <Switch>

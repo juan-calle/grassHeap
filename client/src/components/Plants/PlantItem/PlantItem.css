@@ -5,7 +5,7 @@
   border-radius: 5px;
   filter: drop-shadow(5px 5px 2px rgba(88, 88, 88, 0.664))
     drop-shadow(-1px -1px 0 rgba(88, 88, 88, 0.664));
-  margin: 3%;
+  margin: 5% 10%;
 }
 
 .PlantItem__text {
@@ -14,6 +14,21 @@
   align-items: center;
   width: 40%;
   background-color: rgba(255, 255, 255, 0.692);
+}
+
+.PlantItem__text a {
+  text-decoration: none;
+}
+
+.PlantItem__name {
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.PlantItem__text p {
+  padding: 0 15%;
+  font-style: italic;
 }
 
 .PlantItem__btn {
@@ -41,14 +56,9 @@
   width: 60%;
 }
 
-.PlantItem__text a {
-  text-decoration: none;
-}
-
-.PlantItem__text a::first-letter {
-  text-transform: capitalize;
-}
-
-.PlantItem__text p {
-  padding: 0 15%;
+/* for desktop/laptop */
+@media only screen and (min-width: 600px) {
+  .plantItem {
+    margin: 4%;
+  }
 }

@@ -19,10 +19,7 @@ function Weather() {
     localStorage.getItem("city")
       ? setCity(localStorage.getItem("city"))
       : changeCity();
-    // second arg = [] => runs only on mounth
-    // no second arg => runs every re-render
-    //  second arg populated, runs every  state change
-    // returned function runs before the useEffect main body is run
+
     return () => setError(false);
   }, []);
 

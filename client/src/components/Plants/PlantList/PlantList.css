@@ -9,6 +9,7 @@
   margin: 2vh;
 }
 
+/* for desktop/laptop */
 @media only screen and (min-width: 600px) {
   .PlantList__sort {
     display: flex;
