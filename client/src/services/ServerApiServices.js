@@ -1,4 +1,4 @@
-const base_url = "http://localhost:3001";
+import { SERVER_URL as base_url } from "../utils/config";
 
 exports.getTasksByMonth = async (month = "") => {
   const JSONtasks = await fetch(`${base_url}/tasks/month/${month}`);
