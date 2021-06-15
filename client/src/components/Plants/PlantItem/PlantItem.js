@@ -26,7 +26,7 @@ function PlantItem({ plant, inMyPlants }) {
           to={`/plants/${plant.slug}`}
         >
           {plant.name}
-          <img src={plant.details?.attributes?.svg_icon} />
+          <img src={`https://www.growstuff.org/crops/${plant.slug}.svg`} />
         </Link>
         <p className="PlantItem__p">{plant.scientific_name}</p>
       </div>

@@ -7,7 +7,6 @@
   text-transform: capitalize;
 }
 .PlantDetails__commonNames::first-letter {
-  /* TODO this doesnt work? */
   text-transform: capitalize;
 }
 
@@ -24,8 +23,12 @@
   position: relative;
 }
 
+.PlantDetails__icon {
+  height: 5vh;
+}
+
 .PlantDetails__overlay {
-  max-width: 10%;
+  max-width: 20%;
   position: absolute;
   right: 20%;
   bottom: 0;
@@ -42,5 +45,9 @@
     margin: auto;
     width: 50%;
     border-radius: 5%;
+  }
+
+  .PlantDetails__overlay {
+    max-width: 10%;
   }
 }

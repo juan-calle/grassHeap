@@ -29,9 +29,6 @@ function MonthsTasksBox({ monthNumber, monthName }) {
     setSeasonIcon(getSeason((monthNumber + 1).toString()));
   }, [monthNumber, monthName]);
 
-  function addNewTask(task) {
-    setTasks([...tasks, task]);
-  }
   function deleteThisTask(_id) {
     setTasks([...tasks].filter((task) => task._id !== _id));
     deleteTask(_id);
@@ -43,7 +40,10 @@ function MonthsTasksBox({ monthNumber, monthName }) {
         {monthName} {seasonIcon}
       </h2>
       <TaskList deleteThisTask={deleteThisTask} tasks={tasks} />
-      <AddTaskForm addNewTask={addNewTask} month={monthName} />
+      <AddTaskForm
+        addNewTask={(task) => setTasks([...tasks, task])}
+        month={monthName}
+      />
     </div>
   );
 }

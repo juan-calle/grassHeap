@@ -27,9 +27,8 @@ function PlantDetails() {
         <h1>
           {plantDetails.name}
           <img
-            src={
-              plantDetails.details || plantDetails.details?.attributes?.svg_icon
-            }
+            className="PlantDetails__icon"
+            src={`https://www.growstuff.org/crops/${plantDetails.slug}.svg`}
           />
         </h1>
         <p>

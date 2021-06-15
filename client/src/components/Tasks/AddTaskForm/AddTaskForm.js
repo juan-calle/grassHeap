@@ -13,14 +13,6 @@ function AddTaskForm({ month, addNewTask }) {
 
   const plantList = myPlants.map((plant) => plant.name).sort();
 
-  const updateTask = (e) => {
-    setTask(e.target.value);
-  };
-
-  const updateCrop = (crop) => {
-    setCrop(crop.value);
-  };
-
   const submitHandler = (e) => {
     e.preventDefault();
     const newTask = { month, crop, task, userCreated: true };
@@ -37,12 +29,12 @@ function AddTaskForm({ month, addNewTask }) {
         value={task}
         type="text"
         placeholder="Add custom task for this month"
-        onChange={(e) => updateTask(e)}
+        onChange={(e) => setTask(e.target.value)}
       ></input>
       <Dropdown
         className="form__input form__input--dropDown"
         options={["misc.", ...plantList]}
-        onChange={(e) => updateCrop(e)}
+        onChange={(e) => setCrop(e.value)}
         placeholder="assign to crop"
       />
       <input type="submit" value="submit"></input>
