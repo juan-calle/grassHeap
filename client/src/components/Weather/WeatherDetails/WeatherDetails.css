@@ -28,11 +28,18 @@ https://coolors.co/a0eec0-8ae9c1-86cd82-72a276-666b6a
   display: none;
 }
 
+.WeatherDetails__GIF {
+  display: flex;
+  justify-content: center;
+}
 @media only screen and (max-width: 600px) {
   .WeatherDetails {
     flex-direction: column;
+    justify-content: center;
   }
-
+  .WeatherDetails__text {
+    width: auto;
+  }
   .desktop {
     display: none;
   }
