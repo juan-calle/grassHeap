@@ -32,7 +32,11 @@ function PlantItem({ plant, inMyPlants }) {
       </div>
       <div className="PlantItem__btnDiv">
         {plantOwned ? (
-          <RemoveBtn removePlant={() => removePlant(plant.id)} />
+          <RemoveBtn
+            removePlant={() => {
+              removePlant(parseInt(plant.id, 10));
+            }}
+          />
         ) : (
           <AddButton savePlant={() => savePlant(plant)} />
         )}

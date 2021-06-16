@@ -39,7 +39,7 @@ function PlantList() {
   return (
     <div className="PlantList">
       <div className="PlantList__sort">
-        --buttons not currently working--
+        <p>mind the bugs (and slugs)! buttons not currently working</p>
         <button
           className="PlantList__sort--btn"
           onClick={() => sortPlants("p")}

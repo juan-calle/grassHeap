@@ -37,13 +37,11 @@ function App() {
   }
 
   function removePlant(plantID) {
-    removeFromMyPlants(plantID).then((res) => {
-      // eslint-disable-next-line no-console
-      console.log(res);
-    });
-    const myPlantsCopy = myPlants.filter((plant) => plant.plantID !== plantID);
-    console.log(myPlantsCopy);
-    setMyPlants(myPlantsCopy);
+    removeFromMyPlants(plantID);
+    // const myPlantsCopy = myPlants.filter((plant) => plant.plantID !== plantID);
+    setMyPlants((oldPlants) =>
+      oldPlants.filter((plant) => plant.plantID !== plantID)
+    );
   }
 
   useEffect(() => {
@@ -74,7 +72,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (myPlants.length && plants.length) {
+    if (plants.length) {
       setLoadStatus(true);
     }
   }, [myPlants, plants]);
