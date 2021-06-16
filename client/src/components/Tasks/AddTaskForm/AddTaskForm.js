@@ -31,12 +31,13 @@ function AddTaskForm({ month, addNewTask }) {
         placeholder="Add custom task for this month"
         onChange={(e) => setTask(e.target.value)}
       ></input>
-      <Dropdown
-        className="form__input form__input--dropDown"
-        options={["misc.", ...plantList]}
-        onChange={(e) => setCrop(e.value)}
-        placeholder="assign to crop"
-      />
+      <input
+        className="form__input"
+        value={crop}
+        type="text"
+        placeholder="Add relevant crop"
+        onChange={(e) => setCrop(e.target.value)}
+      ></input>
       <input type="submit" value="submit"></input>
     </form>
   );
