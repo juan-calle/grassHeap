@@ -24,7 +24,7 @@ function App() {
   const [loadStatus, setLoadStatus] = useState(false);
 
   function savePlant(plant) {
-    const newPlant = { name: plant.slug, plantID: plant.id };
+    const newPlant = { name: plant.slug, plantID: parseInt(plant.id) };
     try {
       saveToMyPlants(newPlant).then((res) => {
         // eslint-disable-next-line no-console

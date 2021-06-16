@@ -1,12 +1,12 @@
 import { SERVER_URL as base_url } from "../utils/config";
 
-exports.getTasksByMonth = async (month = "") => {
+export const getTasksByMonth = async (month = "") => {
   const JSONtasks = await fetch(`${base_url}/tasks/month/${month}`);
   const tasks = await JSONtasks.json();
   return tasks;
 };
 
-exports.saveTask = async (task = {}) => {
+export const saveTask = async (task = {}) => {
   const JSONTask = JSON.stringify(task);
   const response = await fetch(`${base_url}/tasks`, {
     method: "POST",
@@ -18,7 +18,7 @@ exports.saveTask = async (task = {}) => {
   return response.json();
 };
 
-exports.deleteTask = async (_id = {}) => {
+export const deleteTask = async (_id = {}) => {
   await fetch(`${base_url}/tasks`, {
     method: "DELETE",
     headers: {
@@ -28,13 +28,13 @@ exports.deleteTask = async (_id = {}) => {
   });
 };
 
-exports.getMyPlants = async () => {
+export const getMyPlants = async () => {
   const JSONPlants = await fetch(`${base_url}/myplants`);
   const myPlants = await JSONPlants.json();
   return myPlants;
 };
 
-exports.saveToMyPlants = async (plant = {}) => {
+export const saveToMyPlants = async (plant = {}) => {
   const JSONPlant = JSON.stringify(plant);
   const response = await fetch(`${base_url}/myplants`, {
     method: "POST",
@@ -46,7 +46,7 @@ exports.saveToMyPlants = async (plant = {}) => {
   return response.json();
 };
 
-exports.removeFromMyPlants = async (plantID = "") => {
+export const removeFromMyPlants = async (plantID = 0) => {
   const JSONPlant = JSON.stringify({ plantID });
   const response = await fetch(`${base_url}/myplants`, {
     method: "DELETE",
@@ -58,7 +58,7 @@ exports.removeFromMyPlants = async (plantID = "") => {
   return response.json();
 };
 
-exports.getGIF = async (query = {}) => {
+export const getGIF = async (query = {}) => {
   const JSONQuery = JSON.stringify(query);
   const response = await fetch(`${base_url}/gifs`, {
     method: "POST",
