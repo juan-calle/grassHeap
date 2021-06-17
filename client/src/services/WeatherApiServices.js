@@ -1,6 +1,6 @@
 import { SERVER_URL as base_url } from "../utils/config";
 
-exports.getWeather = async (city = {}) => {
+export const getWeather = async (city = {}) => {
   try {
     const JSONweather = await fetch(`${base_url}/weather`, {
       method: "POST",

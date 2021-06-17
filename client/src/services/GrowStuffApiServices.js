@@ -1,6 +1,6 @@
 import { SERVER_URL as base_url } from "../utils/config";
 
-exports.getAllPlants = async () => {
+export const getAllPlants = async () => {
   try {
     const JSONPlants = await fetch(`${base_url}/plants`);
     const plants = await JSONPlants.json();
@@ -10,7 +10,7 @@ exports.getAllPlants = async () => {
   }
 };
 
-exports.getPlantByName = async (name = "") => {
+export const getPlantByName = async (name = "") => {
   try {
     const JSONPlant = await fetch(`${base_url}/plant/${name}`);
     const plant = await JSONPlant.json();

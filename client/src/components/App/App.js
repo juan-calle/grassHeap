@@ -26,13 +26,10 @@ function App() {
   function savePlant(plant) {
     const newPlant = { name: plant.slug, plantID: parseInt(plant.id) };
     try {
-      saveToMyPlants(newPlant).then((res) => {
-        // eslint-disable-next-line no-console
-        console.log(res);
-      });
+      saveToMyPlants(newPlant);
       setMyPlants((oldList) => [...oldList, newPlant]);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   }
 
@@ -79,7 +76,6 @@ function App() {
 
   return loadStatus ? (
     <div className="App">
-      {console.log(myPlants)}
       <plantsContext.Provider
         value={{ myPlants, plants, removePlant, savePlant }}
       >
