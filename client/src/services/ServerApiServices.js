@@ -1,6 +1,6 @@
-import { SERVER_URL as base_url } from "../utils/config";
+import { SERVER_URL as base_url } from '../utils/config';
 
-export const getTasksByMonth = async (month = "") => {
+export const getTasksByMonth = async (month = '') => {
   const JSONtasks = await fetch(`${base_url}/tasks/month/${month}`);
   const tasks = await JSONtasks.json();
   return tasks;
@@ -9,9 +9,9 @@ export const getTasksByMonth = async (month = "") => {
 export const saveTask = async (task = {}) => {
   const JSONTask = JSON.stringify(task);
   const response = await fetch(`${base_url}/tasks`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSONTask,
   });
@@ -20,9 +20,9 @@ export const saveTask = async (task = {}) => {
 
 export const deleteTask = async (_id = {}) => {
   await fetch(`${base_url}/tasks`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ _id }),
   });
@@ -37,9 +37,9 @@ export const getMyPlants = async () => {
 export const saveToMyPlants = async (plant = {}) => {
   const JSONPlant = JSON.stringify(plant);
   const response = await fetch(`${base_url}/myplants`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSONPlant,
   });
@@ -49,9 +49,9 @@ export const saveToMyPlants = async (plant = {}) => {
 export const removeFromMyPlants = async (plantID = 0) => {
   const JSONPlant = JSON.stringify({ plantID });
   const response = await fetch(`${base_url}/myplants`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSONPlant,
   });
@@ -61,9 +61,9 @@ export const removeFromMyPlants = async (plantID = 0) => {
 export const getGIF = async (query = {}) => {
   const JSONQuery = JSON.stringify(query);
   const response = await fetch(`${base_url}/gifs`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSONQuery,
   });

@@ -1,22 +1,22 @@
-import React, { useContext } from "react";
-import { plantsContext } from "../../App/App";
-import PlantItem from "../PlantItem/PlantItem";
-import "./PlantList.css";
+import React, { useContext } from 'react';
+import { plantsContext } from '../../App/App';
+import PlantItem from '../PlantItem/PlantItem';
+import './PlantList.css';
 
 function PlantList() {
   const { plants, myPlants } = useContext(plantsContext);
 
   // TODO implement sort buttons
-  function sortPlants(method = "a") {
+  function sortPlants(method = 'a') {
     switch (method) {
-      case "p":
+      case 'p':
         plants.sort((plant1, plant2) =>
-          plant1._score > plant2._score ? -1 : 1
+          plant1._score > plant2._score ? -1 : 1,
         );
         break;
-      case "a":
+      case 'a':
         plants.sort((plant1, plant2) =>
-          plant1.name.toLowerCase().localeCompare(plant2.name.toLowerCase())
+          plant1.name.toLowerCase().localeCompare(plant2.name.toLowerCase()),
         );
         break;
     }
@@ -25,12 +25,10 @@ function PlantList() {
 
   const plantsDisplay = plants
     .sort((plant1, plant2) =>
-      plant1.name.toLowerCase().localeCompare(plant2.name.toLowerCase())
+      plant1.name.toLowerCase().localeCompare(plant2.name.toLowerCase()),
     )
     .map((plant, i) => {
-      const inMyPlants = myPlants.some(
-        (myPlant) => myPlant.name === plant.slug
-      );
+      const inMyPlants = myPlants.some(myPlant => myPlant.name === plant.slug);
       return (
         <PlantItem key={i} inMyPlants={inMyPlants} plant={plant}></PlantItem>
       );
@@ -42,14 +40,12 @@ function PlantList() {
         <p>mind the bugs (and slugs)! buttons not currently working</p>
         <button
           className="PlantList__sort--btn"
-          onClick={() => sortPlants("p")}
-        >
+          onClick={() => sortPlants('p')}>
           Sort by Popularity
         </button>
         <button
           className="PlantList__sort--btn"
-          onClick={() => sortPlants("a")}
-        >
+          onClick={() => sortPlants('a')}>
           Sort Alphabetically
         </button>
       </div>

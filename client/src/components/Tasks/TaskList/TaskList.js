@@ -1,5 +1,5 @@
-import React from "react";
-import TaskItem from "../TaskItem/TaskItem";
+import React from 'react';
+import TaskItem from '../TaskItem/TaskItem';
 
 function TaskList({ tasks, deleteThisTask }) {
   const noTasks = (

@@ -25,8 +25,8 @@ module.exports = {
     semi: ['error', 'always'],
     quotes: ['error', 'single'],
   },
-  settings: {
-    react: {
+  settings: {}
+  /*  react: {
       createClass: 'createReactClass', // Regex for Component Factory to use,
       // default to "createReactClass"
       pragma: 'React', // Pragma to use, default to "React"
@@ -55,5 +55,5 @@ module.exports = {
       'Hyperlink',
       { name: 'Link', linkAttribute: 'to' },
     ],
-  },
+  },*/
 };

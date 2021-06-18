@@ -1,5 +1,5 @@
-import React from "react";
-import "./TaskItem.css";
+import React from 'react';
+import './TaskItem.css';
 
 function TaskItem({ task, deleteThisTask }) {
   const taskIcon = `https://www.growstuff.org/crops/${task.crop}.svg`;
@@ -16,12 +16,11 @@ function TaskItem({ task, deleteThisTask }) {
   return (
     <div className="TaskItem">
       <h3>
-        {task.crop}{" "}
+        {task.crop}{' '}
         <img
           className="taskItem_crop_icon"
           src={taskIcon}
-          onError={(e) => (e.target.src = backUpIcon)}
-        ></img>
+          onError={e => (e.target.src = backUpIcon)}></img>
       </h3>
       <p>{task.task}</p>
       {task.userCreated ? (

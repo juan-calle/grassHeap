@@ -3,7 +3,7 @@ const DB_USER_PASSWORD = process.env.DB_USER_PASSWORD;
 
 const mongoose = require("mongoose");
 mongoose.connect(
-  `mongodb+srv://${DB_USER}:${DB_USER_PASSWORD}@cluster0.kbmrd.mongodb.net/grassHeap?retryWrites=true&w=majority`,
+  `mongodb://localhost/${process.env.DATABASE}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

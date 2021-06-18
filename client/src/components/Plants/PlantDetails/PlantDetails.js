@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router";
-import { plantsContext } from "../../App/App";
-import "./PlantDetails.css";
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router';
+import { plantsContext } from '../../App/App';
+import './PlantDetails.css';
 
 function PlantDetails() {
   const { name } = useParams();
@@ -9,7 +9,7 @@ function PlantDetails() {
   const [plantDetails, setPlantDetails] = useState({});
 
   useEffect(() => {
-    const plant = plants.find((plant) => plant.slug === name);
+    const plant = plants.find(plant => plant.slug === name);
     setPlantDetails(plant);
   }, [name]);
 
@@ -42,12 +42,10 @@ function PlantDetails() {
       <div className="PlantDetails__images">
         <img
           className="PlantDetails__img PlantDetails__main"
-          src={plantDetails.details?.attributes.main_image_path}
-        ></img>
+          src={plantDetails.details?.attributes.main_image_path}></img>
         <img
           className="PlantDetails__img PlantDetails__overlay"
-          src="https://media.tenor.com/images/946c604540b0416070c5431f1ba9de6f/tenor.gif"
-        ></img>
+          src="https://media.tenor.com/images/946c604540b0416070c5431f1ba9de6f/tenor.gif"></img>
       </div>
     </div>
   );

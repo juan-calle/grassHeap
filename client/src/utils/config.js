@@ -1,1 +1,1 @@
-exports.SERVER_URL = "https://grassheapserver.herokuapp.com";
+exports.SERVER_URL = process.env.SERVER_URL;

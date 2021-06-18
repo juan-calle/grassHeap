@@ -1,17 +1,17 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { getWeather } from "../../services/WeatherApiServices";
-import WeatherDetails from "./WeatherDetails/WeatherDetails";
-import "./Weather.css";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { getWeather } from '../../services/WeatherApiServices';
+import WeatherDetails from './WeatherDetails/WeatherDetails';
+import './Weather.css';
 
 function Weather() {
   const [weather, setWeather] = useState({});
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState('');
   const [error, setError] = useState(true);
 
   useEffect(() => {
     getWeather({ city })
-      .then((APIweather) => {
+      .then(APIweather => {
         APIweather.icon_link = `https://openweathermap.org/img/wn/${APIweather.weather[0].icon}@2x.png`;
         setWeather(APIweather);
         setError(false);
@@ -20,14 +20,14 @@ function Weather() {
   }, [city]);
 
   function changeCity() {
-    const promptResult = prompt("Please enter your city", "london");
-    if (promptResult) localStorage.setItem("city", promptResult);
+    const promptResult = prompt('Please enter your city', 'london');
+    if (promptResult) localStorage.setItem('city', promptResult);
     setCity(promptResult);
     return promptResult;
   }
   useEffect(() => {
-    localStorage.getItem("city")
-      ? setCity(localStorage.getItem("city"))
+    localStorage.getItem('city')
+      ? setCity(localStorage.getItem('city'))
       : changeCity();
 
     return () => setError(false);
