@@ -1,20 +1,20 @@
-import React, { createContext, useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Dashboard from "../Dashboard/Dashboard";
-import Navbar from "../NavBar/NavBar";
-import PlantList from "../Plants/PlantList/PlantList";
-import PlantDetails from "../Plants/PlantDetails/PlantDetails";
-import Loader from "../Loader/Loader";
+import React, { createContext, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Dashboard from '../Dashboard/Dashboard';
+import Navbar from '../NavBar/NavBar';
+import PlantList from '../Plants/PlantList/PlantList';
+import PlantDetails from '../Plants/PlantDetails/PlantDetails';
+import Loader from '../Loader/Loader';
 import {
   getMyPlants,
   removeFromMyPlants,
   saveToMyPlants,
-} from "../../services/ServerApiServices";
+} from '../../services/ServerApiServices';
 import {
   getAllPlants,
   getPlantByName,
-} from "../../services/GrowStuffApiServices";
-import "./App.css";
+} from '../../services/GrowStuffApiServices';
+import './App.css';
 
 export const plantsContext = createContext(null);
 
@@ -27,7 +27,7 @@ function App() {
     const newPlant = { name: plant.slug, plantID: parseInt(plant.id) };
     try {
       saveToMyPlants(newPlant);
-      setMyPlants((oldList) => [...oldList, newPlant]);
+      setMyPlants(oldList => [...oldList, newPlant]);
     } catch (err) {
       // console.log(err);
     }
@@ -36,36 +36,34 @@ function App() {
   function removePlant(plantID) {
     removeFromMyPlants(plantID);
     // const myPlantsCopy = myPlants.filter((plant) => plant.plantID !== plantID);
-    setMyPlants((oldPlants) =>
-      oldPlants.filter((plant) => plant.plantID !== plantID)
+    setMyPlants(oldPlants =>
+      oldPlants.filter(plant => plant.plantID !== plantID),
     );
   }
 
   useEffect(() => {
     // make request to GrowStuff API /crops endpoint for all crops
-    getAllPlants().then((plants) => {
+    getAllPlants().then(plants => {
       return Promise.all(
-        plants.map((plant) => {
+        plants.map(plant => {
           // for each plant, make request to GrowStuff API /crops/:plant endpoint
-          return getPlantByName(plant.slug).then((plantDetails) => {
+          return getPlantByName(plant.slug).then(plantDetails => {
             const details = plantDetails.openfarm_data;
             // add details proeprty to each plant object
             plant.details = details;
             return plant;
           });
-        })
-      ).then((plantsAugmented) => {
+        }),
+      ).then(plantsAugmented => {
         // filter plants by only those which have required details available at their endpoint
-        const plantsFiltered = plantsAugmented.filter(
-          (plant) => !!plant.details
-        );
+        const plantsFiltered = plantsAugmented.filter(plant => !!plant.details);
         setPlants(plantsFiltered);
       });
     });
   }, []);
 
   useEffect(() => {
-    getMyPlants().then((myplants) => setMyPlants(myplants));
+    getMyPlants().then(myplants => setMyPlants(myplants));
   }, []);
 
   useEffect(() => {
@@ -77,8 +75,7 @@ function App() {
   return loadStatus ? (
     <div className="App">
       <plantsContext.Provider
-        value={{ myPlants, plants, removePlant, savePlant }}
-      >
+        value={{ myPlants, plants, removePlant, savePlant }}>
         <Router>
           <Navbar />
           <Switch>
