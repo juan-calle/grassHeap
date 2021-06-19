@@ -9,10 +9,10 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
+//    'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
-  parser: '@typescript-eslint/parser',
+  // parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -20,13 +20,14 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react'],
+  // plugins: ['react', '@typescript-eslint'],
   rules: {
     semi: ['error', 'always'],
     quotes: ['error', 'single'],
   },
-  settings: {}
-  /*  react: {
+  settings: {
+    react: {
       createClass: 'createReactClass', // Regex for Component Factory to use,
       // default to "createReactClass"
       pragma: 'React', // Pragma to use, default to "React"
@@ -55,5 +56,5 @@ module.exports = {
       'Hyperlink',
       { name: 'Link', linkAttribute: 'to' },
     ],
-  },*/
+  },
 };

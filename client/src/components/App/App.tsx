@@ -23,17 +23,17 @@ function App() {
   const [myPlants, setMyPlants] = useState([]);
   const [loadStatus, setLoadStatus] = useState(false);
 
-  function savePlant(plant) {
+  function savePlant(plant:any ) :any {
     const newPlant = { name: plant.slug, plantID: parseInt(plant.id) };
     try {
       saveToMyPlants(newPlant);
-      setMyPlants(oldList => [...oldList, newPlant]);
+      setMyPlants((oldList:any) => [...oldList, newPlant]);
     } catch (err) {
       // console.log(err);
     }
   }
 
-  function removePlant(plantID) {
+  function removePlant (plantID: number): void {
     removeFromMyPlants(plantID);
     // const myPlantsCopy = myPlants.filter((plant) => plant.plantID !== plantID);
     setMyPlants(oldPlants =>
@@ -43,9 +43,9 @@ function App() {
 
   useEffect(() => {
     // make request to GrowStuff API /crops endpoint for all crops
-    getAllPlants().then(plants => {
+    getAllPlants().then((plants : any[]) => {
       return Promise.all(
-        plants.map(plant => {
+        plants.map((plant:any) => {
           // for each plant, make request to GrowStuff API /crops/:plant endpoint
           return getPlantByName(plant.slug).then(plantDetails => {
             const details = plantDetails.openfarm_data;
@@ -56,7 +56,7 @@ function App() {
         }),
       ).then(plantsAugmented => {
         // filter plants by only those which have required details available at their endpoint
-        const plantsFiltered = plantsAugmented.filter(plant => !!plant.details);
+        const plantsFiltered : any = plantsAugmented.filter((plant :any )=> !!plant.details);
         setPlants(plantsFiltered);
       });
     });

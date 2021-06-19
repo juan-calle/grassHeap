@@ -4,6 +4,8 @@ export const getAllPlants = async () => {
   try {
     const JSONPlants = await fetch(`${base_url}/plants`);
     const plants = await JSONPlants.json();
+    console.log("deddedee");
+    console.log('plants', plants);
     return plants;
   } catch (err) {
     return err;

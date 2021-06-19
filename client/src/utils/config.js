@@ -1,1 +1,1 @@
-exports.SERVER_URL = process.env.SERVER_URL;
+exports.SERVER_URL = 'http://localhost:3010';
