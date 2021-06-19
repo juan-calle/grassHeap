@@ -1,12 +1,12 @@
-const Plant = require('../models/Plant');
+const Plant = require("../models/Plant");
 
 async function getMyPlants(_, res) {
   try {
-    console.log("entering getmyplants")
+    console.log("entering getmyplants");
     const plants = await Plant.find();
     res.status(200).send(plants);
   } catch (err) {
-    res.status(400).send('failed to get myPlants')
+    res.status(400).send("failed to get myPlants");
   }
 }
 
@@ -16,22 +16,22 @@ async function savePlant(req, res) {
     await newPlant.save();
     res.status(200).send(newPlant);
   } catch (err) {
-    res.status(400).send('failed to save')
+    res.status(400).send("failed to save");
   }
 }
 
 async function deletePlant(req, res) {
-  const {plantID} = req.body;
+  const { plantID } = req.body;
   try {
-    const deleted = await Plant.deleteOne({plantID})
+    const deleted = await Plant.deleteOne({ plantID });
     res.status(201).send(deleted);
   } catch (err) {
-    res.status(400).send('failed to delete')
+    res.status(400).send("failed to delete");
   }
 }
 
 module.exports = {
   getMyPlants,
   savePlant,
-  deletePlant
-}
+  deletePlant,
+};

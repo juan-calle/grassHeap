@@ -1,4 +1,4 @@
-import {SERVER_URL as base_url} from '../utils/config';
+import { SERVER_URL as base_url } from '../utils/config';
 
 export const getAllPlants = async () => {
   try {
