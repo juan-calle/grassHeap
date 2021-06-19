@@ -3,7 +3,7 @@ import React from 'react';
 import Weather from '../Weather/Weather';
 import './Dashboard.css';
 
-function Dashboard() {
+function Dashboard (): JSX.Element {
   return (
     <div>
       <Weather />

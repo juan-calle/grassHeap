@@ -10,64 +10,82 @@ import {
   removeFromMyPlants,
   saveToMyPlants,
 } from '../../services/ServerApiServices';
-import {
-  getAllPlants,
-  getPlantByName,
-} from '../../services/GrowStuffApiServices';
+import { getAllPlants } from '../../services/GrowStuffApiServices';
 import './App.css';
 
-export const plantsContext = createContext(null);
-// interface Plant {}
+interface AppCtxt {
+  myPlants: MyPlant[];
+  plants: Plant[];
+  removePlant: (plantID: number) => void;
+  savePlant: (plant: Plant) => void;
+}
+
+export const plantsContext = createContext<AppCtxt | null>(null);
+interface Plant {
+  _index: string;
+  _type: string;
+  _id: string;
+  _score: number;
+  name: string;
+  description?: string;
+  slug: string;
+  alternate_names: string[];
+  scientific_names: string[];
+  photos_count: number;
+  plantings_count: number;
+  harvests_count: number;
+  planters_ids: number[];
+  has_photos: boolean;
+  thumbnail_url: string;
+  scientific_name?: string;
+  created_at: number;
+  id: string;
+}
+
+interface MyPlant {
+  _id?: string;
+  name: string;
+  plantID: number;
+  __v?: number;
+}
 
 function App(): JSX.Element {
-  const [plants, setPlants] = useState([]);
-  const [myPlants, setMyPlants] = useState([]);
-  const [loadStatus, setLoadStatus] = useState(false);
+  const [plants, setPlants] = useState<Plant[]>([]);
+  const [myPlants, setMyPlants] = useState<MyPlant[]>([]);
+  const [loadStatus, setLoadStatus] = useState<boolean>(false);
 
-  function savePlant(plant: any): any {
-    const newPlant = { name: plant.slug, plantID: parseInt(plant.id) };
+  function savePlant(plant: Plant): void {
+    const newPlant: MyPlant = { name: plant.slug, plantID: parseInt(plant.id) };
     try {
       saveToMyPlants(newPlant);
-      setMyPlants((oldList: any) => [...oldList, newPlant]);
+      setMyPlants((oldList: MyPlant[]) => [...oldList, newPlant]);
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   }
 
   function removePlant(plantID: number): void {
     removeFromMyPlants(plantID);
     // const myPlantsCopy = myPlants.filter((plant) => plant.plantID !== plantID);
-    setMyPlants(oldPlants =>
-      oldPlants.filter(plant => plant.plantID !== plantID),
+    setMyPlants((oldPlants: MyPlant[]) =>
+      oldPlants.filter((plant: MyPlant) => plant.plantID !== plantID),
     );
   }
 
   useEffect(() => {
     // make request to GrowStuff API /crops endpoint for all crops
-    getAllPlants().then((plants: any[]) => {
-      return Promise.all(
-        plants.map((plant: any) => {
-          // for each plant, make request to GrowStuff API /crops/:plant endpoint
-          return getPlantByName(plant.slug).then(plantDetails => {
-            const details = plantDetails.openfarm_data;
-            // add details proeprty to each plant object
-            plant.details = details;
-            return plant;
-          });
-        }),
-      ).then(plantsAugmented => {
-        // filter plants by only those which have required details available at their endpoint
-        const plantsFiltered: any = plantsAugmented.filter(
-          (plant: any) => !!plant.details,
-        );
-        console.log(plantsFiltered);
-        setPlants(plantsFiltered);
-      });
+    getAllPlants().then((plantsAugmented: Plant[]) => {
+      console.log('in then');
+      // filter plants by only those which have required details available at their endpoint
+      const plantsFiltered: any = plantsAugmented.filter(
+        (plant: any) => !!plant.details,
+      );
+      setPlants(plantsFiltered);
     });
   }, []);
 
   useEffect(() => {
-    getMyPlants().then(myplants => setMyPlants(myplants));
+    getMyPlants().then((myplants: MyPlant[]) => setMyPlants(myplants));
   }, []);
 
   useEffect(() => {
