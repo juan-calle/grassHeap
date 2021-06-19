@@ -17,23 +17,24 @@ import {
 import './App.css';
 
 export const plantsContext = createContext(null);
+// interface Plant {}
 
-function App() {
+function App(): JSX.Element {
   const [plants, setPlants] = useState([]);
   const [myPlants, setMyPlants] = useState([]);
   const [loadStatus, setLoadStatus] = useState(false);
 
-  function savePlant(plant:any ) :any {
+  function savePlant(plant: any): any {
     const newPlant = { name: plant.slug, plantID: parseInt(plant.id) };
     try {
       saveToMyPlants(newPlant);
-      setMyPlants((oldList:any) => [...oldList, newPlant]);
+      setMyPlants((oldList: any) => [...oldList, newPlant]);
     } catch (err) {
       // console.log(err);
     }
   }
 
-  function removePlant (plantID: number): void {
+  function removePlant(plantID: number): void {
     removeFromMyPlants(plantID);
     // const myPlantsCopy = myPlants.filter((plant) => plant.plantID !== plantID);
     setMyPlants(oldPlants =>
@@ -43,9 +44,9 @@ function App() {
 
   useEffect(() => {
     // make request to GrowStuff API /crops endpoint for all crops
-    getAllPlants().then((plants : any[]) => {
+    getAllPlants().then((plants: any[]) => {
       return Promise.all(
-        plants.map((plant:any) => {
+        plants.map((plant: any) => {
           // for each plant, make request to GrowStuff API /crops/:plant endpoint
           return getPlantByName(plant.slug).then(plantDetails => {
             const details = plantDetails.openfarm_data;
@@ -56,7 +57,10 @@ function App() {
         }),
       ).then(plantsAugmented => {
         // filter plants by only those which have required details available at their endpoint
-        const plantsFiltered : any = plantsAugmented.filter((plant :any )=> !!plant.details);
+        const plantsFiltered: any = plantsAugmented.filter(
+          (plant: any) => !!plant.details,
+        );
+        console.log(plantsFiltered);
         setPlants(plantsFiltered);
       });
     });

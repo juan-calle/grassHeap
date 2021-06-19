@@ -57,4 +57,16 @@ module.exports = {
       { name: 'Link', linkAttribute: 'to' },
     ],
   },
+  globals: {
+    React: true,
+    google: true,
+    mount: true,
+    mountWithRouter: true,
+    shallow: true,
+    shallowWithRouter: true,
+    context: true,
+    expect: true,
+    jsdom: true,
+    JSX: true
+  },
 };
