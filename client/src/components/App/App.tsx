@@ -17,28 +17,54 @@ import {
 import './App.css';
 
 export const plantsContext = createContext(null);
-// interface Plant {}
+interface Plant {
+  _index: string;
+  _type: string;
+  _id: string;
+  _score: number;
+  name: string;
+  description?: string;
+  slug: string;
+  alternate_names: string[];
+  scientific_names: string[];
+  photos_count: number;
+  plantings_count: number;
+  harvests_count: number;
+  planters_ids: number[];
+  has_photos: boolean;
+  thumbnail_url: string;
+  scientific_name?: string;
+  created_at: number;
+  id: string;
+}
+
+interface MyPlant {
+  _id?: string;
+  name: string;
+  plantID: number;
+  __v?: number;
+}
 
 function App(): JSX.Element {
-  const [plants, setPlants] = useState([]);
-  const [myPlants, setMyPlants] = useState([]);
-  const [loadStatus, setLoadStatus] = useState(false);
+  const [plants, setPlants] = useState<Plant[]>([]);
+  const [myPlants, setMyPlants] = useState<MyPlant[]>([]);
+  const [loadStatus, setLoadStatus] = useState<boolean>(false);
 
-  function savePlant(plant: any): any {
-    const newPlant = { name: plant.slug, plantID: parseInt(plant.id) };
+  function savePlant(plant: Plant): void {
+    const newPlant: MyPlant = { name: plant.slug, plantID: parseInt(plant.id) };
     try {
       saveToMyPlants(newPlant);
-      setMyPlants((oldList: any) => [...oldList, newPlant]);
+      setMyPlants((oldList: MyPlant[]) => [...oldList, newPlant]);
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   }
 
   function removePlant(plantID: number): void {
     removeFromMyPlants(plantID);
     // const myPlantsCopy = myPlants.filter((plant) => plant.plantID !== plantID);
-    setMyPlants(oldPlants =>
-      oldPlants.filter(plant => plant.plantID !== plantID),
+    setMyPlants((oldPlants : MyPlant[]) =>
+      oldPlants.filter((plant: MyPlant) => plant.plantID !== plantID),
     );
   }
 

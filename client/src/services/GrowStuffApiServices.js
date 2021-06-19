@@ -2,8 +2,7 @@ import { SERVER_URL as base_url } from '../utils/config';
 
 export const getAllPlants = async () => {
   try {
-    console.log('deddedee');
-    console.log('plants', plants);
+    console.log('Im here');
     const JSONPlants = await fetch(`${base_url}/plants`);
     const plants = await JSONPlants.json();
     return plants;

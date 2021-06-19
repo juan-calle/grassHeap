@@ -17,6 +17,7 @@ async function getAllPlants (_, res) {
   try {
     const JSONplants = await fetch(`${base_url}.json`);
     const plants = await JSONplants.json();
+    console.log(plants);
     res.status(200).send(plants);
   } catch (err) {
     res.status(400).send('failed to get all Plants')
