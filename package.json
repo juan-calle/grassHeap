@@ -1,0 +1,32 @@
+{
+  "name": "grassheap",
+  "version": "1.0.0",
+  "description": "A lot of task/to-do apps work on a timeframe of minutes. On the other hand, gardening works in the timeframe of months. grassHeap keeps track of your tasks for the month and for the specific plants in your garden.",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "npx cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juan-calle/grassHeap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juan-calle/grassHeap/issues"
+  },
+  "homepage": "https://github.com/juan-calle/grassHeap#readme",
+  "devDependencies": {
+    "commitizen": "^4.2.4",
+    "cz-emoji": "^1.3.1"
+  },
+    "config": {
+    "commitizen": {
+      "path": "cz-emoji"
+    },
+    "cz-emoji": {
+      "skipQuestions": ["scope", "perf", "feature", "deploy", "security", "osx", "linux", "linux", "windows", "android", "ios", "release", "fix-ci", "ci"]
+    }
+  }
+}
