@@ -21,7 +21,7 @@ const {
   getWeather,
   getFiveDayForecast,
 } = require("./controllers/weatherController");
-const { getGIFByQuery } = require("./controllers/gifController");
+const {getGIFByQuery} = require("./controllers/gifController");
 
 // interact with GrowStuff API
 router.get("/plants", getAllPlants);

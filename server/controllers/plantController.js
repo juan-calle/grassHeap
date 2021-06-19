@@ -21,13 +21,9 @@ async function savePlant(req, res) {
 }
 
 async function deletePlant(req, res) {
-  const {
-    plantID
-  } = req.body;
+  const {plantID} = req.body;
   try {
-    const deleted = await Plant.deleteOne({
-      plantID
-    })
+    const deleted = await Plant.deleteOne({plantID})
     res.status(201).send(deleted);
   } catch (err) {
     res.status(400).send('failed to delete')
