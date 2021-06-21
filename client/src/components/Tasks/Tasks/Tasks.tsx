@@ -12,7 +12,6 @@ function Tasks(): JSX.Element {
   function getBGColor (month: number): string {
     return bgColor[months[month]];
   }
-  console.log(lastMonth, currentMonth, nextMonth);
 
   useEffect(() => {
     const today: Date = new Date();
