@@ -32,7 +32,7 @@ function Tasks(): JSX.Element {
           <MonthTaskBox monthNumber={lastMonth} monthName={months[lastMonth]} />
         </div>
         <div
-          style={{ backgroundColor: bgColor.monthName }}
+          style={{ backgroundColor: bgColor[months[currentMonth]] }}
           className={`tasks__month tasks__month--${currentMonth}`}>
           <MonthTaskBox
             monthNumber={currentMonth}
@@ -40,7 +40,7 @@ function Tasks(): JSX.Element {
           />
         </div>
         <div
-          style={{ backgroundColor: bgColor[currentMonth] }}
+          style={{ backgroundColor: bgColor[months[nextMonth]] }}
           className={`tasks__month tasks__month--${nextMonth}`}>
           <MonthTaskBox monthNumber={nextMonth} monthName={months[nextMonth]} />
         </div>
