@@ -1,21 +1,26 @@
-import React, { useContext, useState } from 'react';
-import Dropdown from 'react-dropdown';
+import React, { useState } from 'react';
 import 'react-dropdown/style.css';
 import { saveTask } from '../../../services/ServerApiServices';
-import { plantsContext } from '../../App/App';
+// import { plantsContext } from '../../App/App';
 import './AddTaskForm.css';
+import { Task } from '../../../common/types';
 
-function AddTaskForm({ month, addNewTask }) {
-  const [crop, setCrop] = useState('');
-  const [task, setTask] = useState('');
+interface AddTaskFormProps {
+  month: string;
+  addNewTask: (task: Task) => void;
+}
 
-  const { myPlants } = useContext(plantsContext);
+function AddTaskForm({ month, addNewTask } : AddTaskFormProps): JSX.Element {
+  const [crop, setCrop] = useState<string>('');
+  const [task, setTask] = useState<string>('');
 
-  const plantList = myPlants.map(plant => plant.name).sort();
+  // const { myPlants } = useContext(plantsContext);
 
-  const submitHandler = e => {
+  // const plantList = myPlants.map(plant => plant.name).sort();
+
+  const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    const newTask = { month, crop, task, userCreated: true };
+    const newTask: Task = { month, crop, task, userCreated: true };
     saveTask(newTask);
     addNewTask(newTask);
     setTask('');
