@@ -4,3 +4,12 @@ export interface MyPlant {
   plantID: number;
   __v?: number;
 }
+
+export interface Task {
+  _id: string;
+  month: string;
+  week: string;
+  crop: string;
+  task: string;
+  userCreated?: boolean;
+}

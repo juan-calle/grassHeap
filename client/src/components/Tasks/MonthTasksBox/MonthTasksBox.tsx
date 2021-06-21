@@ -8,21 +8,14 @@ import {
 import AddTaskForm from '../AddTaskForm/AddTaskForm';
 import { getSeason } from './getSeasonFunction';
 import './MonthTasksBox.css';
-import { MyPlant } from '../../../common/types';
+import { MyPlant, Task } from '../../../common/types';
 
 interface MonthProps {
   monthNumber: number;
   monthName: string;
 }
 
-interface Task {
-  _id: string;
-  month: string;
-  week: string;
-  crop: string;
-  task: string;
-  userCreated?: boolean;
-}
+
 
 function MonthsTasksBox({ monthNumber, monthName }: MonthProps): JSX.Element {
   const [tasks, setTasks] = useState<Task[]>([]);
