@@ -37,7 +37,7 @@ function MonthsTasksBox({ monthNumber, monthName }: MonthProps): JSX.Element {
     setSeasonIcon(getSeason((monthNumber + 1)));
   }, [monthNumber, monthName]);
 
-  function deleteThisTask(_id:string) {
+  function deleteThisTask(_id:string): void {
     setTasks([...tasks].filter(task => task._id !== _id));
     deleteTask(_id);
   }
