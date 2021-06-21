@@ -21,7 +21,12 @@ interface AppCtxt {
   savePlant: (plant: Plant) => void;
 }
 
-export const plantsContext = createContext<AppCtxt | null>(null);
+export const plantsContext = createContext<AppCtxt>({
+  myPlants: [],
+  plants: [],
+  removePlant: () => null,
+  savePlant: () => null,
+});
 interface Plant {
   _index: string;
   _type: string;
