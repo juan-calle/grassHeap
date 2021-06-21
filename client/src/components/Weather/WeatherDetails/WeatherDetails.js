@@ -1,20 +1,20 @@
 import './WeatherDetails.css';
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
-import {getGIF} from '../../../services/ServerApiServices';
+import { getGIF } from '../../../services/ServerApiServices';
 
-function WeatherDetails({weather, changeCity}) {
+function WeatherDetails({ weather, changeCity }) {
   const [gifPath, setGifPath] = useState('');
 
   useEffect(() => {
     const query = weather.weather[0].main;
-    getGIF({query}).then(resultsArr => {
+    getGIF({ query }).then(resultsArr => {
       const randomNumber = Math.floor(Math.random() * resultsArr.length);
       const imageURL = resultsArr[randomNumber].images.fixed_height.url;
       setGifPath(imageURL);
     });
-  }, [ weather ]);
+  }, [weather]);
 
   return (
     <div className="WeatherDetails">
@@ -32,7 +32,8 @@ function WeatherDetails({weather, changeCity}) {
       </div>
       <div className="WeatherDetails__GIF">
         <a
-  href = {`https://www.bbc.co.uk/weather/${weather.id}`} rel = "noreferrer"
+          href={`https://www.bbc.co.uk/weather/${weather.id}`}
+          rel="noreferrer"
           target="_blank">
           <img className="Weather__icon" src={gifPath}></img>
         </a>
