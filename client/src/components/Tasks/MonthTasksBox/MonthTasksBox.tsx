@@ -8,16 +8,31 @@ import {
 import AddTaskForm from '../AddTaskForm/AddTaskForm';
 import { getSeason } from './getSeasonFunction';
 import './MonthTasksBox.css';
+import { MyPlant } from '../../../common/types';
 
-function MonthsTasksBox({ monthNumber, monthName }) {
-  const [tasks, setTasks] = useState([]);
+interface MonthProps {
+  monthNumber: number;
+  monthName: string;
+}
+
+interface Task {
+  _id: string;
+  month: string;
+  week: string;
+  crop: string;
+  task: string;
+  userCreated?: boolean;
+}
+
+function MonthsTasksBox({ monthNumber, monthName }: MonthProps): JSX.Element {
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [seasonIcon, setSeasonIcon] = useState('');
 
   useEffect(() => {
-    getMyPlants().then(myPlants => {
-      getTasksByMonth(monthName).then(tasks => {
+    getMyPlants().then((myPlants: MyPlant[]) => {
+      getTasksByMonth(monthName).then((tasks: Task[]) => {
         // filter tasks to those which are relevant to plants saved in myPlants database OR added manually
-        const myTasks = tasks.filter(task =>
+        const myTasks = tasks.filter((task : Task) =>
           myPlants.some(plant => plant.name === task.crop || task.userCreated),
         );
         setTasks(myTasks);
@@ -26,10 +41,10 @@ function MonthsTasksBox({ monthNumber, monthName }) {
   }, [monthNumber, monthName]);
 
   useEffect(() => {
-    setSeasonIcon(getSeason((monthNumber + 1).toString()));
+    setSeasonIcon(getSeason((monthNumber + 1)));
   }, [monthNumber, monthName]);
 
-  function deleteThisTask(_id) {
+  function deleteThisTask(_id:string) {
     setTasks([...tasks].filter(task => task._id !== _id));
     deleteTask(_id);
   }
@@ -41,7 +56,7 @@ function MonthsTasksBox({ monthNumber, monthName }) {
       </h2>
       <TaskList deleteThisTask={deleteThisTask} tasks={tasks} />
       <AddTaskForm
-        addNewTask={task => setTasks([...tasks, task])}
+        addNewTask={(task : Task) => setTasks([...tasks, task])}
         month={monthName}
       />
     </div>
