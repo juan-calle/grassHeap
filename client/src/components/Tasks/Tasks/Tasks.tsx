@@ -3,15 +3,17 @@ import MonthTaskBox from '../MonthTasksBox/MonthTasksBox';
 import { months, bgColor } from '../../../utils/months';
 import './Tasks.css';
 
-function Tasks() {
-  const [currentMonth, setCurrentMonth] = useState(0);
+function Tasks(): JSX.Element {
+  const [currentMonth, setCurrentMonth] = useState<number>(0);
 
   const lastMonth = currentMonth - 1;
   const nextMonth = currentMonth + 1;
+  const test = bgColor[months[lastMonth]];
+  console.log(test);
 
   useEffect(() => {
-    const today = new Date();
-    const thisMonth = today.getMonth();
+    const today: Date = new Date();
+    const thisMonth: number = today.getMonth();
     setCurrentMonth(thisMonth);
   }, []);
 
@@ -25,7 +27,7 @@ function Tasks() {
       <div className="tasks__allmonths">
         <div
           // TODO figure out why bgColor inline style not working
-          style={{ backgroundColor: bgColor[lastMonth] }}
+          style={{ backgroundColor: bgColor[months[lastMonth]] }}
           className={`tasks__month tasks__month--${lastMonth}`}>
           <MonthTaskBox monthNumber={lastMonth} monthName={months[lastMonth]} />
         </div>
