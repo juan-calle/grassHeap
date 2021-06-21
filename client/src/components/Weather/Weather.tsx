@@ -5,9 +5,10 @@ import WeatherDetails from './WeatherDetails/WeatherDetails';
 import './Weather.css';
 
 function Weather() {
-  const [weather, setWeather] = useState({});
-  const [city, setCity] = useState('');
-  const [error, setError] = useState(true);
+  const storedCity = window.localStorage.getItem('city') || null;
+  const [weather, setWeather] = useState<{}>();
+  const [city, setCity] = useState<string | null>(storedCity);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     getWeather({ city })
@@ -35,6 +36,7 @@ function Weather() {
 
   return (
     <div className="Weather">
+      {' '}
       {error ? (
         <h1>
           No weather found for {city} :(
