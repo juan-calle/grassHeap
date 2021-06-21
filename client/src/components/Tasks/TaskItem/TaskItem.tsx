@@ -8,8 +8,8 @@ interface TaskItemProps {
 }
 
 function TaskItem({ task, deleteThisTask }: TaskItemProps): JSX.Element {
-  const taskIcon: string = `https://www.growstuff.org/crops/${task.crop}.svg`;
-  const backUpIcon: string = `https://www.growstuff.org/assets/icons/planting-ce51a46e4a6edd740221f4a98f2e630a944e30ca040b9000d25179c8f5bc17e8.svg`;
+  const taskIcon = `https://www.growstuff.org/crops/${task.crop}.svg`;
+  const backUpIcon = 'https://www.growstuff.org/assets/icons/planting-ce51a46e4a6edd740221f4a98f2e630a944e30ca040b9000d25179c8f5bc17e8.svg';
   const disabledButton: JSX.Element = (
     <div>
       <button className="disabled" disabled>
@@ -26,10 +26,8 @@ function TaskItem({ task, deleteThisTask }: TaskItemProps): JSX.Element {
         <img
           className="taskItem_crop_icon"
           src={taskIcon}
-          onError={e => {
-            const target: HTMLImageElement = e.target;
-            target.src = backUpIcon;
-          }}/>
+          onError={e => (e.target as HTMLImageElement).src = backUpIcon} 
+        />
       </h3>
       <p>{task.task}</p>
       {task.userCreated ? (
