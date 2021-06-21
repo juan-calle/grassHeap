@@ -6,9 +6,9 @@ export interface MyPlant {
 }
 
 export interface Task {
-  _id: string;
+  _id?: string;
   month: string;
-  week: string;
+  week?: string;
   crop: string;
   task: string;
   userCreated?: boolean;
