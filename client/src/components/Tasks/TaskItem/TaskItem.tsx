@@ -26,7 +26,7 @@ function TaskItem({ task, deleteThisTask }: TaskItemProps): JSX.Element {
         <img
           className="taskItem_crop_icon"
           src={taskIcon}
-          onError={e => (e.target as HTMLImageElement).src = backUpIcon} 
+          onError={e => (e.target as HTMLImageElement).src = backUpIcon}
         />
       </h3>
       <p>{task.task}</p>
