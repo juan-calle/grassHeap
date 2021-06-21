@@ -5,6 +5,7 @@ import Navbar from '../NavBar/NavBar';
 import PlantList from '../Plants/PlantList/PlantList';
 import PlantDetails from '../Plants/PlantDetails/PlantDetails';
 import Loader from '../Loader/Loader';
+import { MyPlant } from '../../common/types';
 import {
   getMyPlants,
   removeFromMyPlants,
@@ -40,13 +41,6 @@ interface Plant {
   scientific_name?: string;
   created_at: number;
   id: string;
-}
-
-interface MyPlant {
-  _id?: string;
-  name: string;
-  plantID: number;
-  __v?: number;
 }
 
 function App(): JSX.Element {
