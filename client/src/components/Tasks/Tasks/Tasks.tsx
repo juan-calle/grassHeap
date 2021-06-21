@@ -6,13 +6,13 @@ import './Tasks.css';
 function Tasks(): JSX.Element {
   const [currentMonth, setCurrentMonth] = useState<number>(0);
 
-  const lastMonth = currentMonth - 1;
-  const nextMonth = currentMonth + 1;
+  const lastMonth = currentMonth === 0? 11 : currentMonth - 1;
+  const nextMonth = (currentMonth + 1)%12;
 
   function getBGColor (month: number): string {
     return bgColor[months[month]];
   }
-  console.log((currentMonth + 1) % 12);
+  console.log(lastMonth, currentMonth, nextMonth);
 
   useEffect(() => {
     const today: Date = new Date();
@@ -24,7 +24,7 @@ function Tasks(): JSX.Element {
     <div className="Tasks">
       <button
         className="tasks__prev tasks__scroller--btn"
-        onClick={() => setCurrentMonth(currentMonth - 1)}>
+        onClick={() => setCurrentMonth(lastMonth)}>
         ◀
       </button>
       <div className="tasks__allmonths">
@@ -49,7 +49,7 @@ function Tasks(): JSX.Element {
       </div>
       <button
         className="tasks__next tasks__scroller--btn"
-        onClick={() => setCurrentMonth((currentMonth + 1)%12)}>
+        onClick={() => setCurrentMonth(nextMonth)}>
         ▶
       </button>
     </div>
