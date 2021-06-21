@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getGIF } from '../../../services/ServerApiServices';
 import './WeatherDetails.css';
+
+import React, { useEffect, useState } from 'react';
+
+import { getGIF } from '../../../services/ServerApiServices';
 
 function WeatherDetails({ weather, changeCity }) {
   const [gifPath, setGifPath] = useState('');
