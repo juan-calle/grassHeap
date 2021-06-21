@@ -18,7 +18,7 @@ async function getAllPlants(_, res) {
     console.log("plants augmented", plantsAugmented[0]);
     res.status(200).send(plantsAugmented);
   } catch (err) {
-    res.status(400).send("failed to get all Plants");
+    res.status(400).send("failed to get all Plants", err);
   }
 }
 

@@ -5,7 +5,7 @@ import Navbar from '../NavBar/NavBar';
 import PlantList from '../Plants/PlantList/PlantList';
 import PlantDetails from '../Plants/PlantDetails/PlantDetails';
 import Loader from '../Loader/Loader';
-import { MyPlant } from '../../common/types';
+import { MyPlant, Plant } from '../../common/types';
 import {
   getMyPlants,
   removeFromMyPlants,
@@ -27,26 +27,7 @@ export const plantsContext = createContext<AppCtxt>({
   removePlant: () => null,
   savePlant: () => null,
 });
-interface Plant {
-  _index: string;
-  _type: string;
-  _id: string;
-  _score: number;
-  name: string;
-  description?: string;
-  slug: string;
-  alternate_names: string[];
-  scientific_names: string[];
-  photos_count: number;
-  plantings_count: number;
-  harvests_count: number;
-  planters_ids: number[];
-  has_photos: boolean;
-  thumbnail_url: string;
-  scientific_name?: string;
-  created_at: number;
-  id: string;
-}
+
 
 function App(): JSX.Element {
   const [plants, setPlants] = useState<Plant[]>([]);
