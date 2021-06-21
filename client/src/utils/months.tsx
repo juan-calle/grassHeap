@@ -1,4 +1,4 @@
-exports.months = [
+export const months: string[] = [
   'January',
   'February',
   'March',
@@ -12,7 +12,8 @@ exports.months = [
   'November',
   'December',
 ];
-exports.bgColor = {
+
+export const bgColor: {[key: string]: string} = {
   January: '#382C05',
   February: '#5E4A08',
   March: '#83670B',
