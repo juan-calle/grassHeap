@@ -8,12 +8,15 @@ function Tasks(): JSX.Element {
 
   const lastMonth = currentMonth - 1;
   const nextMonth = currentMonth + 1;
-  const test = bgColor[months[lastMonth]];
-  console.log(test);
+
+  function getBGColor (month: number): string {
+    return bgColor[months[month]];
+  }
+  console.log((currentMonth + 1) % 12);
 
   useEffect(() => {
     const today: Date = new Date();
-    const thisMonth: number = today.getMonth();
+    const thisMonth = today.getMonth();
     setCurrentMonth(thisMonth);
   }, []);
 
@@ -26,13 +29,12 @@ function Tasks(): JSX.Element {
       </button>
       <div className="tasks__allmonths">
         <div
-          // TODO figure out why bgColor inline style not working
-          style={{ backgroundColor: bgColor[months[lastMonth]] }}
+          style={{ backgroundColor: getBGColor(lastMonth) }}
           className={`tasks__month tasks__month--${lastMonth}`}>
           <MonthTaskBox monthNumber={lastMonth} monthName={months[lastMonth]} />
         </div>
         <div
-          style={{ backgroundColor: bgColor[months[currentMonth]] }}
+          style={{ backgroundColor: getBGColor(currentMonth) }}
           className={`tasks__month tasks__month--${currentMonth}`}>
           <MonthTaskBox
             monthNumber={currentMonth}
@@ -40,14 +42,14 @@ function Tasks(): JSX.Element {
           />
         </div>
         <div
-          style={{ backgroundColor: bgColor[months[nextMonth]] }}
+          style={{ backgroundColor: getBGColor(nextMonth) }}
           className={`tasks__month tasks__month--${nextMonth}`}>
           <MonthTaskBox monthNumber={nextMonth} monthName={months[nextMonth]} />
         </div>
       </div>
       <button
         className="tasks__next tasks__scroller--btn"
-        onClick={() => setCurrentMonth(currentMonth + 1)}>
+        onClick={() => setCurrentMonth((currentMonth + 1)%12)}>
         ▶
       </button>
     </div>
