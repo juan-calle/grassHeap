@@ -9,7 +9,8 @@ async function getGIFByQuery(req, res) {
       `${base_url}?api_key=${giphy_api_key}&q=${query}`
     );
     const response = await JSONResponse.json();
-    res.status(200).send(response);
+    const dataResponse = response.data;
+    res.status(200).send(dataResponse);
   } catch (err) {
     res.status(400).send(err);
   }
