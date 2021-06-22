@@ -5,8 +5,14 @@ import AddButton from './PlantItemAddBtn/AddBtn';
 import RemoveBtn from './PlantItemRemoveBtn/RemoveBtn';
 import './PlantItem.css';
 import { plantsContext } from '../../App/App';
+import { Plant } from '../../../common/types';
 
-function PlantItem({ plant, inMyPlants }) {
+interface PlantItemProps {
+  plant: Plant;
+  inMyPlants: boolean;
+}
+
+function PlantItem({ plant, inMyPlants } : PlantItemProps): JSX.Element {
   const [plantOwned, setOwned] = useState(false);
   useEffect(() => {
     setOwned(inMyPlants);
