@@ -2,14 +2,15 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router';
 import { plantsContext } from '../../App/App';
 import './PlantDetails.css';
+import { Plant } from '../../../common/types';
 
-function PlantDetails() {
-  const { name } = useParams();
-  const { plants, myPlants } = useContext(plantsContext);
-  const [plantDetails, setPlantDetails] = useState({});
+function PlantDetails(): JSX.Element {
+  const { name } = useParams<{ name: string }>();
+  const { plants } = useContext(plantsContext);
+  const [plantDetails, setPlantDetails] = useState<Plant>(plants[0]);
 
   useEffect(() => {
-    const plant = plants.find(plant => plant.slug === name);
+    const plant: Plant = plants.filter(plant => plant.slug === name)[0];
     setPlantDetails(plant);
   }, [name]);
 

@@ -1,4 +1,3 @@
-
 interface AddButtonProps {
   savePlant: () => void;
 }
