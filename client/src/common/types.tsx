@@ -17,6 +17,9 @@ export interface Task {
 interface OpenFarmData {
   attributes: {
     main_image_path: string;
+    common_names: string[];
+    description: string;
+    sun_requirements: string;
   }
 }
 
