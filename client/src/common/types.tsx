@@ -14,6 +14,12 @@ export interface Task {
   userCreated?: boolean;
 }
 
+interface OpenFarmData {
+  attributes: {
+    main_image_path: string;
+  }
+}
+
 export interface Plant {
   _index: string;
   _type: string;
@@ -33,6 +39,7 @@ export interface Plant {
   scientific_name?: string;
   created_at: number;
   id: string;
+  details: OpenFarmData;
 }
 
 interface Sys {
