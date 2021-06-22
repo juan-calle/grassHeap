@@ -1,6 +1,7 @@
 import { SERVER_URL as base_url } from '../utils/config';
+import { APIWeather } from '../common/types';
 
-export const getWeather = async (city = {}) => {
+export const getWeather = async (city = ''): Promise<APIWeather> => {
   try {
     const JSONweather = await fetch(`${base_url}/weather`, {
       method: 'POST',
@@ -13,6 +14,7 @@ export const getWeather = async (city = {}) => {
     if (weather.cod === '400' || weather.cod === '404') throw new Error();
     return weather;
   } catch (err) {
-    throw new Error(400);
+    console.log(err);
+    return err;
   }
 };

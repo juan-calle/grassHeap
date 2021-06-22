@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { months } from '../../utils/months';
 import './NavBar.css';
 
-function Navbar() {
+function Navbar(): JSX.Element {
   const today = new Date();
 
   const currentMonth = months[today.getMonth()];
@@ -32,7 +32,7 @@ function Navbar() {
             <span className="dropdown navElement">External Links:</span>
             <a
               className="dropdown NavLink navElement"
-              href={'https://www.rhs.org.uk/advice/in-month/${currentMonth}'}
+              href={`https://www.rhs.org.uk/advice/in-month/${currentMonth}`}
               rel="noreferrer"
               target="_blank">
               RHS
