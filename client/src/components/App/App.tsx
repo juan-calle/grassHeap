@@ -19,6 +19,7 @@ interface AppCtxt {
   plants: Plant[];
   removePlant: (plantID: number) => void;
   savePlant: (plant: Plant) => void;
+  setPlants: React.Dispatch<React.SetStateAction<Plant[]>>
 }
 
 export const plantsContext = createContext<AppCtxt>({
@@ -26,8 +27,8 @@ export const plantsContext = createContext<AppCtxt>({
   plants: [],
   removePlant: () => null,
   savePlant: () => null,
+  setPlants: () => null,
 });
-
 
 function App(): JSX.Element {
   const [plants, setPlants] = useState<Plant[]>([]);
@@ -77,7 +78,7 @@ function App(): JSX.Element {
   return loadStatus ? (
     <div className="App">
       <plantsContext.Provider
-        value={{ myPlants, plants, removePlant, savePlant }}>
+        value={{ myPlants, plants, removePlant, savePlant, setPlants }}>
         <Router>
           <Navbar />
           <Switch>
