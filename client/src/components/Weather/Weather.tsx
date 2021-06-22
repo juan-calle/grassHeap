@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import { getWeather } from '../../services/WeatherApiServices';
 import WeatherDetails from './WeatherDetails/WeatherDetails';
 import './Weather.css';
+import { APIWeather } from '../../common/types';
 
-function Weather() {
+function Weather(): JSX.Element {
   const storedCity = window.localStorage.getItem('city') || null;
-  const [weather, setWeather] = useState<{}>();
+  const [weather, setWeather] = useState<APIWeather>({ });
   const [city, setCity] = useState<string | null>(storedCity);
   const [error, setError] = useState<boolean>(false);
 
@@ -20,11 +21,18 @@ function Weather() {
       .catch(() => setError(true));
   }, [city]);
 
-  function changeCity() {
-    const promptResult = prompt('Please enter your city', 'london');
-    if (promptResult) localStorage.setItem('city', promptResult);
-    setCity(promptResult);
-    return promptResult;
+  function changeCity(): string {
+    const promptResult: string | null = prompt(
+      'Please enter your city',
+      'london',
+    );
+    if (promptResult) {
+      localStorage.setItem('city', promptResult);
+      setCity(promptResult);
+      return promptResult;
+    } else {
+      return '';
+    }
   }
   useEffect(() => {
     localStorage.getItem('city')
