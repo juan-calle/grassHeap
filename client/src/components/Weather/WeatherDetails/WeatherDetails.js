@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { getGIF } from '../../../services/ServerApiServices';
 import './WeatherDetails.css';
+
+import React, { useEffect, useState } from 'react';
+
+import { getGIF } from '../../../services/ServerApiServices';
 
 function WeatherDetails({ weather, changeCity }) {
   const [gifPath, setGifPath] = useState('');
 
   useEffect(() => {
     const query = weather.weather[0].main;
-    getGIF({ query }).then(resultsObj => {
-      const randomNumber = Math.floor(Math.random() * resultsObj.data.length);
-      const imageURL = resultsObj.data[randomNumber].images.fixed_height.url;
+    getGIF({ query }).then(resultsArr => {
+      const randomNumber = Math.floor(Math.random() * resultsArr.length);
+      const imageURL = resultsArr[randomNumber].images.fixed_height.url;
       setGifPath(imageURL);
     });
   }, [weather]);
