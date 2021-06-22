@@ -1,18 +1,19 @@
 import { SERVER_URL as base_url } from '../utils/config';
+import { Task, MyPlant } from '../common/types';
 
-export const getTasksByMonth = async (month = '') => {
+export const getTasksByMonth = async (month = ''): Promise<Task[]> => {
   const JSONtasks = await fetch(`${base_url}/tasks/month/${month}`);
   const tasks = await JSONtasks.json();
   return tasks;
 };
 
-export const getMyPlants = async () => {
+export const getMyPlants = async () : Promise<MyPlant[]> => {
   const JSONPlants = await fetch(`${base_url}/myplants`);
   const myPlants = await JSONPlants.json();
   return myPlants;
 };
 
-export const saveTask = async (task = {}) => {
+export const saveTask = async (task) : Promise<Task> => {
   const JSONTask = JSON.stringify(task);
   const response = await fetch(`${base_url}/tasks`, {
     method: 'POST',
@@ -24,7 +25,7 @@ export const saveTask = async (task = {}) => {
   return response.json();
 };
 
-export const deleteTask = async (_id = {}) => {
+export const deleteTask = async (_id = ''): Promise<void> => {
   await fetch(`${base_url}/tasks`, {
     method: 'DELETE',
     headers: {
@@ -34,7 +35,8 @@ export const deleteTask = async (_id = {}) => {
   });
 };
 
-export const saveToMyPlants = async (plant = {}) => {
+
+export const saveToMyPlants = async (plant: MyPlant): Promise<MyPlant> => {
   const JSONPlant = JSON.stringify(plant);
   const response = await fetch(`${base_url}/myplants`, {
     method: 'POST',
@@ -46,7 +48,7 @@ export const saveToMyPlants = async (plant = {}) => {
   return response.json();
 };
 
-export const removeFromMyPlants = async (plantID = 0) => {
+export const removeFromMyPlants = async (plantID = 0): Promise<MyPlant> => {
   const JSONPlant = JSON.stringify({ plantID });
   const response = await fetch(`${base_url}/myplants`, {
     method: 'DELETE',
@@ -58,7 +60,23 @@ export const removeFromMyPlants = async (plantID = 0) => {
   return response.json();
 };
 
-export const getGIF = async (query = {}) => {
+interface Fixedheight {
+  height: string;
+  width: string;
+  size: string;
+  url: string;
+  mp4_size: string;
+  mp4: string;
+  webp_size: string;
+  webp: string;
+}
+
+interface GifAnswer {
+  fixed_height: Fixedheight;
+}
+
+export const getGIF = async (query = ''): Promise<GifAnswer []> => {
+  console.log('query', query);
   const JSONQuery = JSON.stringify(query);
   const response = await fetch(`${base_url}/gifs`, {
     method: 'POST',
