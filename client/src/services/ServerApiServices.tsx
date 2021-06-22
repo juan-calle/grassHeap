@@ -13,7 +13,7 @@ export const getMyPlants = async () : Promise<MyPlant[]> => {
   return myPlants;
 };
 
-export const saveTask = async (task) : Promise<Task> => {
+export const saveTask = async (task : Task) : Promise<Task> => {
   const JSONTask = JSON.stringify(task);
   const response = await fetch(`${base_url}/tasks`, {
     method: 'POST',
