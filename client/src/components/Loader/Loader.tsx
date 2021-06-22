@@ -1,7 +1,6 @@
-import React from 'react';
 import './Loader.css';
 
-function Loader() {
+function Loader(): JSX.Element {
   return (
     <div className="App__loading">
       <h3>Loading DOM trees and DOM vegetables...</h3>
