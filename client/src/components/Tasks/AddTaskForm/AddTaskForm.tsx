@@ -4,25 +4,40 @@ import { saveTask } from '../../../services/ServerApiServices';
 // import { plantsContext } from '../../App/App';
 import './AddTaskForm.css';
 import { Task } from '../../../common/types';
+import Tasks from '../Tasks/Tasks';
 
 interface AddTaskFormProps {
   month: string;
   addNewTask: (task: Task) => void;
+  tasks: Task[];
 }
 
-function AddTaskForm({ month, addNewTask } : AddTaskFormProps): JSX.Element {
+function AddTaskForm({
+  month,
+  addNewTask,
+  tasks,
+}: AddTaskFormProps): JSX.Element {
   const [crop, setCrop] = useState<string>('');
   const [task, setTask] = useState<string>('');
 
   // const { myPlants } = useContext(plantsContext);
 
   // const plantList = myPlants.map(plant => plant.name).sort();
-
+  function taskIsNew (newTask : Task, tasks : Task[]) {
+    const exists = Boolean(tasks.find((task : Task) => {
+      return task.month === newTask.month
+        && task.crop === newTask.crop
+        && task.task === newTask.task;
+    }));
+    return !exists;
+  }
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     const newTask: Task = { month, crop, task, userCreated: true };
-    saveTask(newTask);
-    addNewTask(newTask);
+    if (taskIsNew(newTask, tasks)) {
+      saveTask(newTask);
+      addNewTask(newTask);
+    }
     setTask('');
     setCrop('');
   };
