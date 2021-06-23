@@ -31,12 +31,17 @@ function AddTaskForm({
     }));
     return !exists;
   }
+  
+  async function saveAndAddTask (task : Task) {
+    const fullTask = await saveTask(task);
+    addNewTask(fullTask);
+  }
+
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     const newTask: Task = { month, crop, task, userCreated: true };
     if (taskIsNew(newTask, tasks)) {
-      saveTask(newTask);
-      addNewTask(newTask);
+      saveAndAddTask(newTask);
     }
     setTask('');
     setCrop('');
@@ -55,7 +60,7 @@ function AddTaskForm({
         value={crop}
         type="text"
         placeholder="Add relevant crop"
-        onChange={e => setCrop(e.target.value)}></input>
+        onChange={e => setCrop(e.target.value.toLowerCase())}></input>
       <input type="submit" value="submit"></input>
     </form>
   );
