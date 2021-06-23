@@ -9,10 +9,18 @@ async function clearCustomTasks() {
   await Task.deleteMany({ userCreated: true });
 }
 
+function postTask(data) {
+  return request
+    .post("/tasks")
+    .set("Content-Type", "application/json")
+    .send(data)
+    .expect(201);
+}
+
 describe("Testing /task endpoints", () => {
-  // afterEach(() => {
-  //   return clearCustomTasks();
-  // });
+  afterEach(() => {
+    return clearCustomTasks();
+  });
   it("should receive stored tasks", (done) => {
     request
       .get("/tasks")
@@ -24,32 +32,23 @@ describe("Testing /task endpoints", () => {
       });
   });
   it("should add new tasks to the tasks collection", (done) => {
-    request
-      .post("/tasks")
-      .set("Content-Type", "application/json")
-      .send(mocks.customTask1)
-      .expect(201)
-      .end(() => {
-        request
-          .get("/tasks")
-          .expect("Content-Type", /json/)
-          .then((res) => {
-            return Task.exists({ crop: "potato" });
-          })
-          .then((boolAnswer) => {
-            expect(boolAnswer).toBe(true);
-            clearCustomTasks();
-            done();
-          });
-      });
+    postTask(mocks.customTask1).end(() => {
+      request
+        .get("/tasks")
+        .expect("Content-Type", /json/)
+        .then((res) => {
+          return Task.exists({ crop: "potato" });
+        })
+        .then((boolAnswer) => {
+          expect(boolAnswer).toBe(true);
+          clearCustomTasks();
+          done();
+        });
+    });
   });
 
   it("should add and delete task", (done) => {
-    request
-      .post("/tasks")
-      .set("Content-Type", "application/json")
-      .send(mocks.customTask1)
-      .expect(201)
+    postTask(mocks.customTask1)
       .then(async () => {
         const taskToDelete = await Task.findOne(
           { crop: "potato" },
@@ -65,6 +64,23 @@ describe("Testing /task endpoints", () => {
         expect(result.status).toBe(201);
         done();
       });
+  });
+
+  it("should only get tasks of a given month", (done) => {
+    postTask(mocks.customTask1).end(() => {
+      postTask(mocks.customTask2).end(() => {
+        postTask(mocks.customTask3).end(() => {
+          request
+            .get("/tasks/month/august")
+            .expect("Content-Type", /json/)
+            .expect(200)
+            .then((res) => {
+              expect(res.body.length).toBe(2);
+              done();
+            });
+        });
+      });
+    });
   });
 });
 
