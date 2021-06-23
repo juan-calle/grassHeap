@@ -5,13 +5,6 @@ const mocks = require("./mocks");
 const db = require("../../models/database");
 const Plant = require("../../models/Plant");
 
-async function clearMyPlantsCollection() {
-  await db.dropCollection("myplants");
-}
-
-async function createMyPlantsCollection() {
-  await db.createCollection("myplants");
-}
 
 /*
 post
@@ -22,8 +15,15 @@ post, get and delete
 describe endpoint
     describe function
 */
+async function clearMyPlantsCollection() {
+  await db.dropCollection("myplants");
+}
 
-describe("/myPlants endpoint", () => {
+async function createMyPlantsCollection() {
+  await db.createCollection("myplants");
+}
+
+describe("/myPlants endpoints", () => {
   beforeEach(() => {
     return createMyPlantsCollection();
   });
