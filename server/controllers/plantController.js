@@ -13,7 +13,7 @@ async function savePlant(req, res) {
   try {
     const newPlant = new Plant(req.body);
     await newPlant.save();
-    res.status(200).send(newPlant);
+    res.status(201).send(newPlant);
   } catch (err) {
     res.status(400).send('failed to save')
   }
@@ -27,7 +27,7 @@ async function deletePlant(req, res) {
     const deleted = await Plant.deleteOne({
       plantID
     })
-    res.status(201).send(deleted);
+    res.status(202).send(deleted);
   } catch (err) {
     res.status(400).send('failed to delete')
   }
