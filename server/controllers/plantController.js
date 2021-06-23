@@ -2,7 +2,6 @@ const Plant = require('../models/Plant');
 
 async function getMyPlants(_, res) {
   try {
-    console.log("entering getmyplants")
     const plants = await Plant.find();
     res.status(200).send(plants);
   } catch (err) {
