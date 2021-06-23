@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest",
     "test:watch": "jest --watch",
     "start": "node index.js",
     "commit": "cd ../ && npm run commit"
@@ -23,6 +23,7 @@
     "npm": "7.13.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "jest": "^27.0.5",
     "supertest": "^6.1.3"
