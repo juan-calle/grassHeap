@@ -13,7 +13,7 @@ async function saveTask(req, res) {
   try {
     const newTask = new Task(req.body);
     await newTask.save();
-    res.status(200).send(newTask);
+    res.status(201).send(newTask);
   } catch (err) {
     res.status(400).send('failed to save')
   }

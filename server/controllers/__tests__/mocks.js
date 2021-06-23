@@ -21,4 +21,11 @@ module.exports = {
     task: "be afraid",
     userCreated: true,
   },
+  customTask3: {
+    month: "July",
+    week: "2",
+    crop: "banana",
+    task: "fee faa foo bar",
+    userCreated: true,
+  },
 };
