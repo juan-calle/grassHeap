@@ -9,6 +9,7 @@ const initialWeather = {
   weather: [
     {
       icon: 'sun',
+      main: 'sun',
     },
   ],
 };
@@ -16,7 +17,7 @@ const initialWeather = {
 function Weather(): JSX.Element {
   const storedCity = window.localStorage.getItem('city') || null;
   const [weather, setWeather] = useState<APIWeather>(initialWeather);
-  const [city, setCity] = useState(storedCity? storedCity : 'london');
+  const [city, setCity] = useState(storedCity ? storedCity : 'london');
   const [error, setError] = useState(true);
 
   useEffect(() => {
@@ -29,12 +30,14 @@ function Weather(): JSX.Element {
       .catch(() => setError(true));
   }, [city]);
 
-  function changeCity() {
+  function changeCity(): string {
     const promptResult = prompt('Please enter your city', 'london');
     if (promptResult) localStorage.setItem('city', promptResult);
-    setCity(promptResult? promptResult : 'london');
-    return promptResult;
+    const sentResult = promptResult ? promptResult : 'london';
+    setCity(sentResult);
+    return sentResult;
   }
+  
   useEffect(() => {
     localStorage.getItem('city')
       ? setCity(localStorage.getItem('city')!)

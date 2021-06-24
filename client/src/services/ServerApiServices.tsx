@@ -72,12 +72,14 @@ interface Fixedheight {
 }
 
 interface GifAnswer {
-  fixed_height: Fixedheight;
+  images: {
+    fixed_height: Fixedheight;
+  }
 }
 
 export const getGIF = async (query = ''): Promise<GifAnswer []> => {
-  console.log('query', query);
-  const JSONQuery = JSON.stringify(query);
+
+  const JSONQuery = JSON.stringify({query});
   const response = await fetch(`${base_url}/gifs`, {
     method: 'POST',
     headers: {

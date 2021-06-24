@@ -78,7 +78,7 @@ interface Main {
 
 interface Weather {
   id?: number;
-  main?: string;
+  main: string;
   description?: string;
   icon: string;
 }
