@@ -77,9 +77,9 @@ interface Main {
 }
 
 interface Weather {
-  id: number;
-  main: string;
-  description: string;
+  id?: number;
+  main?: string;
+  description?: string;
   icon: string;
 }
 
@@ -90,7 +90,7 @@ interface Coord {
 
 export interface APIWeather {
   coord?: Coord;
-  weather?: Weather[];
+  weather: Weather[];
   base?: string;
   main?: Main;
   visibility?: number;

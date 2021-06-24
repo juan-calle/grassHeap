@@ -5,14 +5,22 @@ import WeatherDetails from './WeatherDetails/WeatherDetails';
 import './Weather.css';
 import { APIWeather } from '../../common/types';
 
+const initialWeather = {
+  weather: [
+    {
+      icon: 'sun',
+    },
+  ],
+};
+
 function Weather(): JSX.Element {
   const storedCity = window.localStorage.getItem('city') || null;
-  const [weather, setWeather] = useState<APIWeather>({ });
-  const [city, setCity] = useState<string | null>(storedCity);
-  const [error, setError] = useState<boolean>(false);
+  const [weather, setWeather] = useState<APIWeather>(initialWeather);
+  const [city, setCity] = useState(storedCity? storedCity : 'london');
+  const [error, setError] = useState(true);
 
   useEffect(() => {
-    getWeather({ city })
+    getWeather(city)
       .then(APIweather => {
         APIweather.icon_link = `https://openweathermap.org/img/wn/${APIweather.weather[0].icon}@2x.png`;
         setWeather(APIweather);
@@ -21,22 +29,15 @@ function Weather(): JSX.Element {
       .catch(() => setError(true));
   }, [city]);
 
-  function changeCity(): string {
-    const promptResult: string | null = prompt(
-      'Please enter your city',
-      'london',
-    );
-    if (promptResult) {
-      localStorage.setItem('city', promptResult);
-      setCity(promptResult);
-      return promptResult;
-    } else {
-      return '';
-    }
+  function changeCity() {
+    const promptResult = prompt('Please enter your city', 'london');
+    if (promptResult) localStorage.setItem('city', promptResult);
+    setCity(promptResult? promptResult : 'london');
+    return promptResult;
   }
   useEffect(() => {
     localStorage.getItem('city')
-      ? setCity(localStorage.getItem('city'))
+      ? setCity(localStorage.getItem('city')!)
       : changeCity();
 
     return () => setError(false);
@@ -44,7 +45,6 @@ function Weather(): JSX.Element {
 
   return (
     <div className="Weather">
-      {' '}
       {error ? (
         <h1>
           No weather found for {city} :(
