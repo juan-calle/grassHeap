@@ -2,11 +2,20 @@
   margin: 2%;
 }
 
+.PlantList__sort {
+}
+
 .PlantList__sort--btn {
-  width: auto;
-  height: 10vh;
-  padding: 2vh;
-  margin: 2vh;
+  display: inline-block;
+  border: none;
+  border-style: hidden;
+  text-decoration: none;
+  background: #eec643;
+  color: #000000;
+  font-size: large;
+  height: 3em;
+  margin: 0.5em;
+  border-radius: 15px;
 }
 
 /* for desktop/laptop */
