@@ -14,7 +14,6 @@ const {
 } = require("./controllers/taskController");
 
 const {
-  getPlantByName,
   getAllPlants,
 } = require("./controllers/growStuffController");
 
@@ -26,7 +25,6 @@ const { getGIFByQuery } = require("./controllers/gifController");
 
 // interact with GrowStuff API
 router.get("/plants", getAllPlants);
-router.get("/plant/:name", getPlantByName);
 
 // interact with MyPlants database
 router.get("/myPlants", getMyPlants);

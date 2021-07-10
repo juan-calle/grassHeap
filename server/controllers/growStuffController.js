@@ -1,29 +1,31 @@
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
-const base_url = 'https://www.growstuff.org/crops'
+const base_url = "https://www.growstuff.org/crops";
 
-async function getPlantByName(req, res) {
-  const plantName = req.params.name;
-  try {
-    const JSONplant = await fetch(`${base_url}/${plantName}.json`);
-    const plant = await JSONplant.json();
-    res.status(200).send(plant);
-  } catch (err) {
-    res.status(400).send('failed to get plant')
-  }
+async function augmentPlants (plants) {
+  const plantsAugmented = await Promise.all(
+    plants.map(async (plant) => {
+      const JSONplant = await fetch(`${base_url}/${plant.slug}.json`);
+      const plantDetails = await JSONplant.json();
+      const details = plantDetails.openfarm_data;
+      plant.details = details;
+      return plant;
+    })
+  );
+  return plantsAugmented;
 }
 
-async function getAllPlants (_, res) {
+async function getAllPlants(_, res) {
   try {
     const JSONplants = await fetch(`${base_url}.json`);
     const plants = await JSONplants.json();
-    res.status(200).send(plants);
+    const plantsAugmented = await augmentPlants(plants);
+    res.status(200).send(plantsAugmented);
   } catch (err) {
-    res.status(400).send('failed to get all Plants')
+    res.status(400).send("failed to get all Plants", err);
   }
 }
 
 module.exports = {
   getAllPlants,
-  getPlantByName
-}
+};

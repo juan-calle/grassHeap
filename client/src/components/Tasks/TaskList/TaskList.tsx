@@ -1,13 +1,18 @@
-import React from "react";
-import TaskItem from "../TaskItem/TaskItem";
+import TaskItem from '../TaskItem/TaskItem';
+import { Task } from '../../../common/types';
 
-function TaskList({ tasks, deleteThisTask }) {
-  const noTasks = (
+interface TaskListProps {
+  tasks: Task[];
+  deleteThisTask: (_id: string) => void;
+}
+
+function TaskList({ tasks, deleteThisTask }: TaskListProps): JSX.Element {
+  const noTasks: JSX.Element = (
     <div className="TaskList_empty">
       <p>no tasks for your plants this month</p>
     </div>
   );
-  const showTasks = tasks.map((task, i) => (
+  const showTasks: JSX.Element[] = tasks.map((task, i) => (
     <ul key={i}>
       <li>
         <TaskItem deleteThisTask={deleteThisTask} task={task} />

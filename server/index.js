@@ -1,4 +1,5 @@
 "use strict";
+<<<<<<< HEAD
 
 require("dotenv").config();
 const express = require("express");
@@ -8,11 +9,13 @@ require("./models/database");
 
 const PORT = process.env.PORT;
 const app = express();
+=======
+const app = require('./server');
+const PORT = process.env.PORT || 3001;
+>>>>>>> 4dc1d82d2d454840a4eab416129be622a517510d
 
-app.use(cors());
-app.use(express.json());
-app.use(router);
 
 app.listen(PORT, () => {
+  console.clear();
   console.log(`app listening on ${PORT}`);
 });

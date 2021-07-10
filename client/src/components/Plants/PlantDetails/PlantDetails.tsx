@@ -1,15 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router";
-import { plantsContext } from "../../App/App";
-import "./PlantDetails.css";
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router';
+import { plantsContext } from '../../App/App';
+import './PlantDetails.css';
+import { Plant } from '../../../common/types';
 
-function PlantDetails() {
-  const { name } = useParams();
-  const { plants, myPlants } = useContext(plantsContext);
-  const [plantDetails, setPlantDetails] = useState({});
+function PlantDetails(): JSX.Element {
+  const { name } = useParams<{ name: string }>();
+  const { plants } = useContext(plantsContext);
+  const [plantDetails, setPlantDetails] = useState<Plant>(plants[0]);
 
   useEffect(() => {
-    const plant = plants.find((plant) => plant.slug === name);
+    const plant: Plant = plants.filter(plant => plant.slug === name)[0];
     setPlantDetails(plant);
   }, [name]);
 
@@ -42,12 +43,10 @@ function PlantDetails() {
       <div className="PlantDetails__images">
         <img
           className="PlantDetails__img PlantDetails__main"
-          src={plantDetails.details?.attributes.main_image_path}
-        ></img>
+          src={plantDetails.details?.attributes.main_image_path}></img>
         <img
           className="PlantDetails__img PlantDetails__overlay"
-          src="https://media.tenor.com/images/946c604540b0416070c5431f1ba9de6f/tenor.gif"
-        ></img>
+          src="https://media.tenor.com/images/946c604540b0416070c5431f1ba9de6f/tenor.gif"></img>
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { months } from "../../utils/months";
-import "./NavBar.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { months } from '../../utils/months';
+import './NavBar.css';
 
-function Navbar() {
+function Navbar(): JSX.Element {
   const today = new Date();
 
   const currentMonth = months[today.getMonth()];
@@ -34,35 +34,31 @@ function Navbar() {
               className="dropdown NavLink navElement"
               href={`https://www.rhs.org.uk/advice/in-month/${currentMonth}`}
               rel="noreferrer"
-              target="_blank"
-            >
+              target="_blank">
               RHS
               <span className="NavElement__icon">🍀</span>
             </a>
             <a
               className="dropdown NavLink navElement"
-              href={`https://www.bbc.co.uk/weather`}
+              href={'https://www.bbc.co.uk/weather'}
               rel="noreferrer"
-              target="_blank"
-            >
+              target="_blank">
               BBC Weather
               <span className="NavElement__icon">⛅</span>
             </a>
             <a
               className="dropdown NavLink navElement"
-              href={`https://www.gardenfocused.co.uk/index.php`}
+              href={'https://www.gardenfocused.co.uk/index.php'}
               rel="noreferrer"
-              target="_blank"
-            >
+              target="_blank">
               Task Info
               <span className="NavElement__icon">🥔</span>
             </a>
             <a
               className="dropdown NavLink navElement"
-              href={`https://www.gardenfocused.co.uk/index.php`}
+              href={'https://www.gardenfocused.co.uk/index.php'}
               rel="noreferrer"
-              target="_blank"
-            >
+              target="_blank">
               Veg Info
               <span className="NavElement__icon">🥦</span>
             </a>
