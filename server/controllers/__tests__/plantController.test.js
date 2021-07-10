@@ -5,16 +5,6 @@ const mocks = require("./mocks");
 const db = require("../../models/database");
 const Plant = require("../../models/Plant");
 
-
-/*
-post
-
-post and get
-
-post, get and delete
-describe endpoint
-    describe function
-*/
 async function clearMyPlantsCollection() {
   await db.dropCollection("myplants");
 }

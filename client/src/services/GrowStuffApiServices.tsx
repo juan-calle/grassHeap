@@ -3,7 +3,6 @@ import { Plant } from '../common/types';
 
 export const getAllPlants = async (): Promise<Plant[]> => {
   try {
-    console.log('in getallplants');
     const JSONPlants = await fetch(`${base_url}/plants`);
     const plants = await JSONPlants.json();
     return plants;

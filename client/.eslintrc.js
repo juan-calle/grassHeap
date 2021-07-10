@@ -20,12 +20,16 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react'],
-  // plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint'],
   rules: {
-    semi: ['error', 'always'],
-    quotes: ['error', 'single'],
-    '@typescript-eslint/no-non-null-assertion': 'off'
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    ],
+
+    'semi': ['error', 'always'],
+    'quotes': ['error', 'single'],
+    '@typescript-eslint/no-non-null-assertion': 'off',
   },
   settings: {
     react: {

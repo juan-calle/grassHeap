@@ -17,16 +17,16 @@ import './App.css';
 interface AppCtxt {
   myPlants: MyPlant[];
   plants: Plant[];
-  removePlant: (plantID: number) => void;
-  savePlant: (plant: Plant) => void;
-  setPlants: React.Dispatch<React.SetStateAction<Plant[]>>
+  removePlant: (_plantID: number) => void;
+  savePlant: (_plant: Plant) => void;
+  setPlants: React.Dispatch<React.SetStateAction<Plant[]>>;
 }
 
 export const plantsContext = createContext<AppCtxt>({
   myPlants: [],
   plants: [],
-  removePlant: () => null,
-  savePlant: () => null,
+  removePlant: (_plantID: number) => null,
+  savePlant: (_plant: Plant) => null,
   setPlants: () => null,
 });
 

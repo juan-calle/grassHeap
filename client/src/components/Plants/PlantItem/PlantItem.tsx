@@ -12,7 +12,7 @@ interface PlantItemProps {
   inMyPlants: boolean;
 }
 
-function PlantItem({ plant, inMyPlants } : PlantItemProps): JSX.Element {
+function PlantItem({ plant, inMyPlants }: PlantItemProps): JSX.Element {
   const [plantOwned, setOwned] = useState(false);
   useEffect(() => {
     setOwned(inMyPlants);

@@ -1,10 +1,8 @@
 import { SERVER_URL as base_url } from '../utils/config';
 import { APIWeather } from '../common/types';
 /* eslint-disable */
-export const getWeather = async (city = ""): Promise<APIWeather> => {
-  console.log("in services")
+export const getWeather = async (city = ''): Promise<APIWeather> => {
   try {
-    console.log(JSON.stringify(city));
     const JSONweather = await fetch(`${base_url}/weather`, {
       method: 'POST',
       headers: {

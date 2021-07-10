@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import 'react-dropdown/style.css';
 import { saveTask } from '../../../services/ServerApiServices';
-// import { plantsContext } from '../../App/App';
 import './AddTaskForm.css';
 import { Task } from '../../../common/types';
-import Tasks from '../Tasks/Tasks';
 
 interface AddTaskFormProps {
   month: string;
@@ -23,16 +21,20 @@ function AddTaskForm({
   // const { myPlants } = useContext(plantsContext);
 
   // const plantList = myPlants.map(plant => plant.name).sort();
-  function taskIsNew (newTask : Task, tasks : Task[]) {
-    const exists = Boolean(tasks.find((task : Task) => {
-      return task.month === newTask.month
-        && task.crop === newTask.crop
-        && task.task === newTask.task;
-    }));
+  function taskIsNew(newTask: Task, tasks: Task[]) {
+    const exists = Boolean(
+      tasks.find((task: Task) => {
+        return (
+          task.month === newTask.month &&
+          task.crop === newTask.crop &&
+          task.task === newTask.task
+        );
+      }),
+    );
     return !exists;
   }
-  
-  async function saveAndAddTask (task : Task) {
+
+  async function saveAndAddTask(task: Task) {
     const fullTask = await saveTask(task);
     addNewTask(fullTask);
   }

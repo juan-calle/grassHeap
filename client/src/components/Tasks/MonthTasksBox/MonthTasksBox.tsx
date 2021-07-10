@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import TaskList from '../TaskList/TaskList';
 import {
@@ -15,8 +16,6 @@ interface MonthProps {
   monthName: string;
 }
 
-
-
 function MonthsTasksBox({ monthNumber, monthName }: MonthProps): JSX.Element {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [seasonIcon, setSeasonIcon] = useState('');
@@ -25,7 +24,7 @@ function MonthsTasksBox({ monthNumber, monthName }: MonthProps): JSX.Element {
     getMyPlants().then((myPlants: MyPlant[]) => {
       getTasksByMonth(monthName).then((tasks: Task[]) => {
         // filter tasks to those which are relevant to plants saved in myPlants database OR added manually
-        const myTasks = tasks.filter((task : Task) =>
+        const myTasks = tasks.filter((task: Task) =>
           myPlants.some(plant => plant.name === task.crop || task.userCreated),
         );
         setTasks(myTasks);
@@ -34,10 +33,10 @@ function MonthsTasksBox({ monthNumber, monthName }: MonthProps): JSX.Element {
   }, [monthNumber, monthName]);
 
   useEffect(() => {
-    setSeasonIcon(getSeason((monthNumber + 1)));
+    setSeasonIcon(getSeason(monthNumber + 1));
   }, [monthNumber, monthName]);
 
-  function deleteThisTask(_id:string): void {
+  function deleteThisTask(_id: string): void {
     setTasks([...tasks].filter(task => task._id !== _id));
     deleteTask(_id);
   }
@@ -49,7 +48,7 @@ function MonthsTasksBox({ monthNumber, monthName }: MonthProps): JSX.Element {
       </h2>
       <TaskList deleteThisTask={deleteThisTask} tasks={tasks} />
       <AddTaskForm
-        addNewTask={(task : Task) => setTasks([...tasks, task])}
+        addNewTask={(task: Task) => setTasks([...tasks, task])}
         month={monthName}
         tasks={tasks}
       />

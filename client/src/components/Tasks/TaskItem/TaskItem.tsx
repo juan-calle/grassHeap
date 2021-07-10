@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
+import React from 'react';
 import './TaskItem.css';
 import { Task } from '../../../common/types';
-import React from 'react';
 
 interface TaskItemProps {
   task: Task;
@@ -9,7 +10,8 @@ interface TaskItemProps {
 
 function TaskItem({ task, deleteThisTask }: TaskItemProps): JSX.Element {
   const taskIcon = `https://www.growstuff.org/crops/${task.crop}.svg`;
-  const backUpIcon = 'https://www.growstuff.org/assets/icons/planting-ce51a46e4a6edd740221f4a98f2e630a944e30ca040b9000d25179c8f5bc17e8.svg';
+  const backUpIcon =
+    'https://www.growstuff.org/assets/icons/planting-ce51a46e4a6edd740221f4a98f2e630a944e30ca040b9000d25179c8f5bc17e8.svg';
   const disabledButton: JSX.Element = (
     <div>
       <button className="disabled" disabled>
@@ -26,7 +28,7 @@ function TaskItem({ task, deleteThisTask }: TaskItemProps): JSX.Element {
         <img
           className="taskItem_crop_icon"
           src={taskIcon}
-          onError={e => (e.target as HTMLImageElement).src = backUpIcon}
+          onError={e => ((e.target as HTMLImageElement).src = backUpIcon)}
         />
       </h3>
       <p>{task.task}</p>
