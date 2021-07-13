@@ -21,16 +21,20 @@ describe("Testing /task endpoints", () => {
   afterEach(() => {
     return clearCustomTasks();
   });
+
   it("should receive stored tasks", (done) => {
-    request
-      .get("/tasks")
-      .expect("Content-Type", /json/)
-      .expect(200)
-      .then((res) => {
-        expect(res.body.length).toBe(21);
-        done();
-      });
+    postTask(mocks.customTask1).end(() => {
+      request
+        .get("/tasks")
+        .expect("Content-Type", /json/)
+        .expect(200)
+        .then((res) => {
+          expect(res.body[0].task).toBe("harvest");
+          done();
+        });
+    });
   });
+
   it("should add new tasks to the tasks collection", (done) => {
     postTask(mocks.customTask1).end(() => {
       request
@@ -83,5 +87,3 @@ describe("Testing /task endpoints", () => {
     });
   });
 });
-
-//it shouldn't save twice the exact same task

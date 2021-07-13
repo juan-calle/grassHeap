@@ -9,17 +9,11 @@ async function clearMyPlantsCollection() {
   await db.dropCollection("myplants");
 }
 
-async function createMyPlantsCollection() {
-  await db.createCollection("myplants");
-}
-
 describe("/myPlants endpoints", () => {
-  beforeEach(() => {
-    return createMyPlantsCollection();
-  });
   afterEach(() => {
     return clearMyPlantsCollection();
   });
+
   it("should post plant to myplants collection", (done) => {
     request
       .post("/myPlants")
@@ -35,6 +29,7 @@ describe("/myPlants endpoints", () => {
           .end(done);
       });
   });
+
   it("should retrieve plants", (done) => {
     request
       .post("/myPlants")
@@ -59,8 +54,8 @@ describe("/myPlants endpoints", () => {
           });
       });
   });
+
   it("should delete plants", (done) => {
-    // const collectionSize = db.collection("myplants").count({});
     request
       .post("/myPlants")
       .set("Content-Type", "application/json")

@@ -11,7 +11,7 @@ module.exports = {
     month: "August",
     week: "2",
     crop: "potato",
-    task: "smell their delicious flavor",
+    task: "harvest",
     userCreated: true,
   },
   customTask2: {
@@ -25,7 +25,7 @@ module.exports = {
     month: "September",
     week: "2",
     crop: "banana",
-    task: "fee faa foo bar",
+    task: "await ripening before collection",
     userCreated: true,
   },
 };
