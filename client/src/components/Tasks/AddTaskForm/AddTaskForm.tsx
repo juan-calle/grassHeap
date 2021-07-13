@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 'react-dropdown/style.css';
 import { saveTask } from '../../../services/ServerApiServices';
 import './AddTaskForm.css';
 import { Task } from '../../../common/types';
