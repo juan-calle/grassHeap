@@ -10,7 +10,6 @@ function PlantList(): JSX.Element {
     displayPlants(plants);
   }, [plants]);
 
-
   function sortPlants(method = 'a'): void {
     if (method === 'p') {
       setPlants(prev => {
@@ -41,7 +40,6 @@ function PlantList(): JSX.Element {
   return (
     <div className="PlantList">
       <div className="PlantList__sort">
-        <p>mind the bugs (and slugs)! buttons not currently working</p>
         <button
           className="PlantList__sort--btn"
           onClick={() => sortPlants('p')}>
