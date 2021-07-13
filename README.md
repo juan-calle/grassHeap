@@ -1,5 +1,6 @@
 # grassHeap 🦗
 
+
 A lot of task/to-do apps work on a timeframe of days or hours. On the other hand, gardening works in the timeframe of months. grassHeap helps you keep track of garden tasks for the month and for the specific plants in your garden. Powered by the <a href="https://github.com/Growstuff/growstuff/wiki/API-Version-0"> GrowStuff API</a>.
 
 You can view the app at https://grassheapclient.herokuapp.com/
@@ -41,4 +42,4 @@ You can view the app at https://grassheapclient.herokuapp.com/
 - For deployment purposes, there are two additional git repos within this one (one in server and one in client) each with their own remotes.
 
 ## Contributors 
-Testing, TypeScript implementation and bug fixes by @CalimeRon and @juan-calle 🐛
+Testing, TypeScript implementation and bug fixes by <a href="https://github.com/CalimeRon">@CalimeRon</a> and <a href="https://github.com/juan-calle/">@juan-calle</a> 🐛
