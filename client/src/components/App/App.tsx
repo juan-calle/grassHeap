@@ -6,6 +6,9 @@ import PlantList from '../Plants/PlantList/PlantList';
 import PlantDetails from '../Plants/PlantDetails/PlantDetails';
 import Loader from '../Loader/Loader';
 import { MyPlant, Plant } from '../../common/types';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
+
 import {
   getMyPlants,
   removeFromMyPlants,
